@@ -10,6 +10,15 @@ git remote add origin https://github.com/uname/folder.git
 git remote -v
 git push -u origin master
 
+Just messed around with some files
+git commit
+
+
+
 git pull
 
 git rm *.swp
+
+
+Cancel the indicing (for example cancel an add)
+git reset
