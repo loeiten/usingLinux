@@ -10,8 +10,8 @@ git remote add origin https://github.com/uname/folder.git
 git remote -v
 git push -u origin master
 
-Just messed around with some files
-git commit
+Just messed around with some files (will only add modified files)
+git add -u
 
 
 
