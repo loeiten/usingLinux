@@ -16,6 +16,8 @@ Daily use
 git add readme.txt
 git commit -m “Add readme.txt”
 git push
+# Add all changed files
+git add -u
 
 
 Create folder at github
