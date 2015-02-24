@@ -25,15 +25,35 @@ Create folder at github
 git remote add origin https://github.com/uname/folder.git
 
 
+Revert all changes
+==================
+http://stackoverflow.com/questions/1146973/how-do-i-revert-all-local-changes-in-git-managed-project-to-previous-state
+# Remove all untracked files
+git clean -f 
+# Revert changes made to your working copy
+git checkout .
+# Revert changes made to the index (i.e., that you have added)
+git reset
+# Revert a change that you have committed
+git revert ...
+
+
 How git works
 =============
 http://stackoverflow.com/questions/2745076/what-are-the-differences-between-git-commit-and-git-push
 
 
-How to clone a branch
-=====================
+Branches and merging
+====================
+# Clone a branch
+#http://stackoverflow.com/questions/1911109/git-clone-a-specific-branch
 git clone -b <branch> <remote_repo>
-http://stackoverflow.com/questions/1911109/git-clone-a-specific-branch
+# Brances and merging
+# http://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
+# Make branch
+git checkout -b [name_of_your_new_branch]
+# Push branch
+git push origin [name_of_your_new_branch]
 
 
 Resolve a confilct
