@@ -54,7 +54,8 @@ git clone -b <branch> <remote_repo>
 git checkout -b [name_of_your_new_branch]
 # Push branch
 git push origin [name_of_your_new_branch]
-
+# See branches
+git log --graph --oneline --all
 
 Resolve a confilct
 ==================
