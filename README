@@ -60,3 +60,13 @@ git log --graph --oneline --all
 Resolve a confilct
 ==================
 https://help.github.com/articles/resolving-a-merge-conflict-from-the-command-line/
+
+Git on USB
+==========
+mkdir /path/to/usb/repository.git
+cd /path/to/usb/repository.git
+git init --bare
+cd /path/to/source/
+git init
+git remote add usb file:///path/to/usb/repository.git
+http://www.geppyparziale.com/post/13494900906/create-a-git-repository-on-a-usb-drive
