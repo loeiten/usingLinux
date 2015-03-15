@@ -69,4 +69,13 @@ git init --bare
 cd /path/to/source/
 git init
 git remote add usb file:///path/to/usb/repository.git
+git push usb
+
+To pull:
+git pull usb
+If there are stuff already in the folder:
+git fetch --all
+git reset --hard usb/master
+
+
 http://www.geppyparziale.com/post/13494900906/create-a-git-repository-on-a-usb-drive
