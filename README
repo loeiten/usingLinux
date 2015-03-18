@@ -15,7 +15,7 @@ Daily use
 =========
 git add readme.txt
 git commit -m “Add readme.txt”
-git push
+git push -u origin master
 # Add all changed files
 git add -u
 
@@ -56,6 +56,10 @@ git checkout -b [name_of_your_new_branch]
 git push origin [name_of_your_new_branch]
 # See branches
 git log --graph --oneline --all
+
+Add a delete
+============
+git rm $(git ls-files --deleted)
 
 Resolve a confilct
 ==================
