@@ -4,11 +4,13 @@ http://readwrite.com/2013/09/30/understanding-github-a-journey-for-beginners-par
 http://readwrite.com/2013/10/02/github-for-beginners-part-2#awesm=~oFlUvD0lcooGkC
 
 
+
 To not have to type the username and pw all the time:
 =====================================================
 NOTE: You have to change the URL from HTTP to SSH when making an SSH key
 https://help.github.com/articles/generating-ssh-keys/
 https://help.github.com/articles/changing-a-remote-s-url/
+
 
 
 Daily use
@@ -20,9 +22,41 @@ git push -u origin master
 git add -u
 
 
+
+gitdiff
+=======
+NOTE: Use 
+git d 
+instead if
+gitdiff
+http://stackoverflow.com/questions/3713765/viewing-all-git-diffs-with-vimdiff
+
+
+
+List all the files for a commit in Git
+======================================
+Get the checksum for git log
+Either:
+git diff-tree --no-commit-id --name-only -r 94dce78b10d568b32981642d7d0b36abe2267988
+or
+git show --pretty="format:" --name-only 94dce78b10d568b32981642d7d0b36abe2267988
+http://stackoverflow.com/questions/424071/list-all-the-files-for-a-commit-in-git
+
+
+
+Revert to a previous Git commit
+===============================
+# This will destroy any local modifications.
+# Don't do it if you have uncommitted work you want to keep.
+git reset --hard 299fe62b218f82712554f7df3b62f6045f0a2d88
+http://stackoverflow.com/questions/4114095/revert-to-a-previous-git-commit
+
+
+
 Create folder at github
 =======================
 git remote add origin https://github.com/uname/folder.git
+
 
 
 Revert all changes
@@ -38,9 +72,11 @@ git reset
 git revert ...
 
 
+
 How git works
 =============
 http://stackoverflow.com/questions/2745076/what-are-the-differences-between-git-commit-and-git-push
+
 
 
 Branches and merging
@@ -56,14 +92,22 @@ git checkout -b [name_of_your_new_branch]
 git push origin [name_of_your_new_branch]
 # See branches
 git log --graph --oneline --all
+# Delete a branch
+git push origin --delete <branchName>
+
+
 
 Add a delete
 ============
 git rm $(git ls-files --deleted)
 
+
+
 Resolve a confilct
 ==================
 https://help.github.com/articles/resolving-a-merge-conflict-from-the-command-line/
+
+
 
 Git on USB
 ==========
