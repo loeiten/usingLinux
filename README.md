@@ -1,11 +1,27 @@
-This is a small note of nifty things I've found while working with git.
+# Short note on how to git
 
-# For the beginners:
+- [Warmup tutorials](#warmup-tutorials)
+- [Generate ssh-key](#generate-ssh-key)
+- [Adding files](#adding-files)
+- [gitdiff](#gitdiff)
+- [List files in a commit](#list-files-in-a-commit)
+- [Revert to previous commit](#revert-to-previous-commit)
+- [Create folder on github](#create-folder-on-github)
+- [Revert all changes](#revert-all-changes)
+- [How git works](#how-git-works)
+- [Branches](#branches)
+- [Add a delete](#add-a-delete)
+- [Resolve a confilct](#resolve-a-confilct)
+- [Git on USB](#git-on-usb)
+- [Download git on cluster](#download-git-on-cluster)
+
+## Warmup tutorials
 http://readwrite.com/2013/09/30/understanding-github-a-journey-for-beginners-part-1#awesm=~oFlQCvoJank0tf
 http://readwrite.com/2013/10/02/github-for-beginners-part-2#awesm=~oFlUvD0lcooGkC
 
-# To not have to type the username and pw all the time:
-NOTE: You have to change the URL from HTTP to SSH when making an SSH key
+## Generate ssh-key
+To not have to type the username and pw all the time:
+**NOTE:** You have to change the URL from HTTP to SSH when making an SSH key
 
 https://help.github.com/articles/generating-ssh-keys/
 
@@ -14,21 +30,22 @@ https://help.github.com/enterprise/11.10.340/user/articles/generating-ssh-keys/)
 
 https://help.github.com/articles/changing-a-remote-s-url/
 
-# Nifty to remember
+## Adding files
+Nifty to remember
 ```
 git add -A # Adds everything
 git add -u # Do not add new files
 ```
 http://stackoverflow.com/questions/572549/difference-between-git-add-a-and-git-add
 
-# gitdiff
+## gitdiff
 Use `git d` instead of `gitdiff`
 
 Eventually, `git diff --no-external`
 
 http://stackoverflow.com/questions/3713765/viewing-all-git-diffs-with-vimdiff
 
-# List all the files for a commit in Git
+## List files in a commit
 Get the checksum for git log
 
 Either:
@@ -41,7 +58,7 @@ git show --pretty="format:" --name-only <checksum>
 ```
 http://stackoverflow.com/questions/424071/list-all-the-files-for-a-commit-in-git
 
-# Revert to a previous Git commit
+## Revert to previous commit
 **NOTE**:
 * This will destroy any local modifications.
 * Don't do it if you have uncommitted work you want to keep.
@@ -50,10 +67,10 @@ git reset --hard <checksum>
 ```
 http://stackoverflow.com/questions/4114095/revert-to-a-previous-git-commit
 
-# Create folder at github
+## Create folder on github
 `git remote add origin https://github.com/uname/folder.git`
 
-# Revert all changes
+## Revert all changes
 Remove all untracked files
 
 `git clean -f`
@@ -72,10 +89,10 @@ Revert a change that you have committed
 
 http://stackoverflow.com/questions/1146973/how-do-i-revert-all-local-changes-in-git-managed-project-to-previous-state
 
-# How git works
+## How git works
 http://stackoverflow.com/questions/2745076/what-are-the-differences-between-git-commit-and-git-push
 
-# Branches
+## Branches
 Clone a branch
 
 `git clone -b <branch> <remote_repo>`
@@ -100,14 +117,14 @@ Delete a branch
 
 http://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
 
-# Add a delete
+## Add a delete
 `git rm $(git ls-files --deleted)`
 
-# Resolve a confilct
+## Resolve a confilct
 https://help.github.com/articles/resolving-a-merge-conflict-from-the-command-line/
 
-# Git on USB
-## Make the repository
+## Git on USB
+### Make the repository
 ```
 mkdir /path/to/usb/repository.git
 cd /path/to/usb/repository.git
@@ -117,7 +134,7 @@ git init
 git remote add usb file:///path/to/usb/repository.git
 git push usb
 ```
-## Pull from the repository
+### Pull from the repository
 a) If there are stuff already in the folder:
 ```
 git remote add usb file:///path/to/usb/repository.git
@@ -132,7 +149,8 @@ git clone file:///path/to/usb/repository.git
 ```
 http://www.geppyparziale.com/post/13494900906/create-a-git-repository-on-a-usb-drive
 
-# Download git to a server
+## Download git on cluster
+For archaic cluster with not up to date software
 ```
 cd ~
 mkdir install
