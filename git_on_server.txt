@@ -1,16 +1,1 @@
-cd ~
-mkdir install
-mkdir git
-cd install
-wget http://kernel.org/pub/software/scm/git/git-2.1.1.tar.gz
-tar -xvf git-2.1.1.tar.gz
-cd git-2.1.1
-./configure --prefix=$HOME/src --exec-prefix=$HOME/src/git
-make
-make install
 
-# Write the following to the terminal
-#export PATH=$PATH:$HOME/src/git/bin
-# Add following to ./bashrc
-## Using git
-#export PATH=$PATH:$HOME/src/git/bin
