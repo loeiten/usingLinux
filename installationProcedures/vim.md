@@ -1,7 +1,15 @@
 # Install vim
 
 This will get and build vim if you are super user.
-Source: https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source
+* [Build vim](build-vim)
+* [Install vundle](install-vundle)
+* [Install NerdTree](install-nerdtree)
+* [Install You Complete Me](install-ycm)
+* [Install pyclewn](install-pyclewn)
+
+## Build vim
+Modified from: https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source
+
 ```
 sudo apt-get install libncurses5-dev libgnome2-dev libgnomeui-dev \
     libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
@@ -13,6 +21,7 @@ sudo apt-get remove vim vim-runtime gvim
 sudo apt-get remove vim-tiny vim-common vim-gui-common
 ```
 Then
+
 ```
 cd ~
 git clone https://github.com/vim/vim.git
@@ -65,10 +74,12 @@ https://github.com/Valloric/YouCompleteMe#full-installation-guide
   Clang Binaries for 64-bit Ubuntu-13.04
   Extract it to `~/ycm_tmp/llvm_root_dir`
 - **NOTE** :
+
   ```
   cmake -G "Unix Makefiles" -DPATH_TO_LLVM_ROOT=~/ycm_tmp/llvm_root_dir . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp
   ```
   Rather than
+
   ```
   cmake -G "Unix Makefiles" -DPATH_TO_LLVM_ROOT=~/ycm_temp/llvm_root_dir . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp
   ```
