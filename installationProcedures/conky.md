@@ -17,7 +17,6 @@ order for conky to work.
    cd ..
    ./makesymlinks.sh
    sudo apt-get install lm-sensors
-   sudo sensors-detect
    ```
    
 2. Reply yes to all when installing the sensors
