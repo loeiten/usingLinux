@@ -4,7 +4,7 @@ Tips and tricks when working with LaTeX
 
 * [Setup kile](#setup-kile)
 * [texdiff](#texdiff)
-* [Embed videos](#Embed videos)
+* [Embed videos](#embed-videos)
 
 ## Setup kile
 When going "outside the box", kile usually needs some modifications
@@ -31,10 +31,12 @@ https://bugs.kde.org/show_bug.cgi?id=253789
 
 ## texdiff
 `latexdiff` is a valuable tool when finding differences between two pdfs
+
 https://www.ctan.org/pkg/latexdiff?lang=en
 
 ## Embed videos
 In order to embed videos the `libx encoder` is needed
+
 http://stackoverflow.com/questions/9764740/unknown-encoder-libx264
 
 **NOTE**: `movie15` is obsolete, but working
@@ -70,6 +72,9 @@ ffprobe -i video.mpg
 Linux has (at least 03.17.2016), no readers which supports embedded videos.
 There is a possibility to download adobe players, but this is with mixed
 results
+
 http://tex.stackexchange.com/questions/60160/includemedia-wont-play-video
+
 ftp://ftp.adobe.com/pub/adobe/reader/unix/9.x/9.4.1/enu/
+
 http://tex.stackexchange.com/questions/58104/beamer-media9-play-multiple-videos-at-once/58122#58122
