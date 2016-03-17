@@ -6,6 +6,7 @@ order for conky to work.
 
 1. **NOTE**: The following will replace your dotfiles. Old dotfiles will be
    saved to `dotfiles_old`
+
    ```
    cd ~
    git clone https://github.com/loeiten/dotfiles.git
@@ -18,11 +19,14 @@ order for conky to work.
    sudo apt-get install lm-sensors
    sudo sensors-detect
    ```
+   
 2. Reply yes to all when installing the sensors
+
    ```
    sudo sensors-detect
    ```
 3. Install conky
+
    ```
    sudo apt-get install conky
    ```
@@ -30,5 +34,7 @@ order for conky to work.
 5. Click on `Add`
 6. Chose a `name` and a `comment`
 7. Choose either a) or b)
+
    a) Add the command `conky -p 10`
+   
    b) Add the command `$HOME/.conky/.conky-startup.sh`
