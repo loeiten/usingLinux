@@ -1,4 +1,5 @@
 # Short note on how to git
+When everything fails, and you forget how to git
 
 - [Warmup tutorials](#warmup-tutorials)
 - [Generate ssh-key](#generate-ssh-key)
