@@ -1,6 +1,8 @@
-This will get and build vim if you are super user
-=================================================
+# Install vim
+
+This will get and build vim if you are super user.
 Source: https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source
+```
 sudo apt-get install libncurses5-dev libgnome2-dev libgnomeui-dev \
     libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
     libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev \
@@ -9,7 +11,9 @@ sudo apt-get install libncurses5-dev libgnome2-dev libgnomeui-dev \
 sudo apt-get remove vim vim-runtime gvim
 
 sudo apt-get remove vim-tiny vim-common vim-gui-common
-
+```
+Then
+```
 cd ~
 git clone https://github.com/vim/vim.git
 cd vim
@@ -22,61 +26,52 @@ cd vim
             --enable-luainterp \
             --enable-gui=gtk2 --enable-cscope --prefix=/usr
 make VIMRUNTIMEDIR=/usr/share/vim/vim74
+```
+There are two alternatives from here
+a) `sudo make install`
+b) `sudo apt-get install checkinstall &&  sudo checkinstall`
+   this works, but has given troubles with package manager
 
-# For easy uninstallation of package (have had problems that get troubles with update manager)
-# sudo apt-get install checkinstall
-# sudo checkinstall
-sudo make install
-
+Then
+```
 sudo update-alternatives --install /usr/bin/editor editor /usr/bin/vim 1
 sudo update-alternatives --set editor /usr/bin/vim
 sudo update-alternatives --install /usr/bin/vi vi /usr/bin/vim 1
 sudo update-alternatives --set vi /usr/bin/vim
+```
 
-# You may want to remove vim from the update manager
+## Install vundle
+Follow the instructions on https://github.com/gmarik/Vundle.vim
 
+## Install NerdTree
+If the `vimrc` file is properly set up (see [install vundle](#install-vundle),
+then this should be possible to download with `:PluginInstall`
 
+## Install YCM
+1. Get it from vundle
+2. Follow step on https://github.com/Valloric/YouCompleteMe#ubuntu-linux-x64
+   If this doesn't work, see below
+3. Add
+   `let g:ycm_global_ycm_extra_conf = '<home-path>/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'`
+   to your `.vimrc`
+4. Check that you spelled the home folder correct form step 3
+   (unfortunately looks like `$HOME/` doesn't work)
 
-Install pyclewn
-===============
-See install_pyclewn.txt
+### If step 2 fails
+If this doesn't work, check the full installation manual
+https://github.com/Valloric/YouCompleteMe#full-installation-guide
+- Get LLVM lib:
+  http://llvm.org/releases/download.html#3.3
+  Clang Binaries for 64-bit Ubuntu-13.04
+  Extract it to `~/ycm_tmp/llvm_root_dir`
+- **NOTE** :
+  ```
+  cmake -G "Unix Makefiles" -DPATH_TO_LLVM_ROOT=~/ycm_tmp/llvm_root_dir . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp
+  ```
+  Rather than
+  ```
+  cmake -G "Unix Makefiles" -DPATH_TO_LLVM_ROOT=~/ycm_temp/llvm_root_dir . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp
+  ```
 
-Install and build vim
-=====================
-See the tutorial on YCM
-NOTE: When Package Manager asks to update: Ignore any updates from vim
-
-
-Install vundle
-==============
-https://github.com/gmarik/Vundle.vim
-
-
-Install NerdTree
-================
-Install NerdTree (should be possible to see when typing :PluginInstall as it is
-already written in the vimrc file)
-
-
-Install YCM (also found in vimrc)
-=================================
-1. Get it from vundle (is already in my vimrc)
-2. This has worked before
-   https://github.com/Valloric/YouCompleteMe#ubuntu-linux-x64
-   If step 2 doesn't work, see below
-3. Add 
-   let g:ycm_global_ycm_extra_conf = '/home/mmag/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-   to your .vimrc, and check that the home folder is correct (unfortunately looks like $HOME/ doesn't work)
-
-If step 2 fails
-   If this doesn't work, check the full installation (maybe there are some packages to get from there)
-   The procedure described below has worked and worked partially
-   https://github.com/Valloric/YouCompleteMe#full-installation-guide
-   - Get LLVM lib:
-     http://llvm.org/releases/download.html#3.3
-     Clang Binaries for 64-bit Ubuntu-13.04 
-     Extract it to ~/ycm_tmp/llvm_root_dir
-   - STEP 4
-     cmake -G "Unix Makefiles" -DPATH_TO_LLVM_ROOT=~/ycm_tmp/llvm_root_dir . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp
-     RATHER THAN
-     cmake -G "Unix Makefiles" -DPATH_TO_LLVM_ROOT=~/ycm_temp/llvm_root_dir . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp
+## Install pyclewn
+See [pyclewn.md](pyclewn.md)

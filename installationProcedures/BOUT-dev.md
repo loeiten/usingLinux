@@ -1,4 +1,5 @@
 # Installation of BOUT-dev
+
 ...through own experience
 
 - [MPI](#mpi)
