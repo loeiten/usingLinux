@@ -1,5 +1,10 @@
 # Using svn
 
+* [Setting up with vim](#setting-up-with-vim)
+* [Checking out a repository](#checking-out-a-repository)
+* [Daily use](#daily-use)
+* [Working directly with repositories](#working-directly-with-repositories)
+
 svn can be handy, but in my opinion not as handy as git. On certain occations
 svn has the bad habit of messing up the database and checksum, and it looks
 like the best solution is then to delete the local repository and checkout from
@@ -21,7 +26,7 @@ on your filesystem, but svn will not catch this, and will usually complain that
 the file is not found if you try to commit. In order for svn to understand, the
 command will be `svn mv from.txt to.rxt`
 
-## Setting up svn with vim
+## Setting up with vim
 To change the editor, you can add the following to the `.bashrc` file
 
 ```
