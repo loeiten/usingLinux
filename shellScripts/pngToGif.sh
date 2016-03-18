@@ -20,6 +20,7 @@ for i in $1* ; do echo $i ; convert -transparent $2 $i trans_$i; done
 for i in trans* ; do echo $i ; convert -trim +repage $i trimmed_trans_$i; done
 
 # Make animated gif
+# If number of loops is set to 0, and infinite loop is created
 convert -delay 10 -loop 0 trimmed_trans_*.png anim.gif
 
 # Delete temporary files

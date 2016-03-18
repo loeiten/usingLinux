@@ -1,7 +1,7 @@
 # Short note on how to git
 When everything fails, and you forget how to git
 
-- [Warmup tutorials](#warmup-tutorials)
+- [Warm-up tutorials](#warm-up-tutorials)
 - [Generate ssh-key](#generate-ssh-key)
 - [Adding files](#adding-files)
 - [gitdiff](#gitdiff)
@@ -16,12 +16,12 @@ When everything fails, and you forget how to git
 - [Git on USB](#git-on-usb)
 - [Download git on cluster](#download-git-on-cluster)
 
-## Warmup tutorials
+## Warm-up tutorials
 http://readwrite.com/2013/09/30/understanding-github-a-journey-for-beginners-part-1#awesm=~oFlQCvoJank0tf
 http://readwrite.com/2013/10/02/github-for-beginners-part-2#awesm=~oFlUvD0lcooGkC
 
 ## Generate ssh-key
-To not have to type the username and pw all the time:
+To not have to type the username and password all the time:
 **NOTE:** You have to change the URL from HTTP to SSH when making an SSH key
 
 https://help.github.com/articles/generating-ssh-keys/

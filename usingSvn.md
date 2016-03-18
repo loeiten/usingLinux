@@ -1,12 +1,12 @@
 # Using svn
 
-svn can be handy, but in my opinion not as handy as git. On certain occations
+svn can be handy, but in my opinion not as handy as git. On certain occasions
 svn has the bad habit of messing up the database and checksum, and it looks
 like the best solution is then to delete the local repository and checkout from
 the start.
 
 **NOTE**: Some repositories are possible to access from the browser. Just be
-aware that a commit to the repository is done, it is sometimes necessecary to
+aware that a commit to the repository is done, it is sometimes necessary to
 close and re-open the browser in order to see the changes.
 
 **NOTE**: There exists "collection" of repositories, which you cannot check out
@@ -17,7 +17,7 @@ repository which can be checked out from.
 **NOTE**: svn works essentially differently than git. In order for svn to
 understand what you are doing, you have to add `svn` in front of everything you
 do. For example if `from.txt`, `mv from.txt to.rxt` will move the file around
-on your filesystem, but svn will not catch this, and will usually complain that
+on your file system, but svn will not catch this, and will usually complain that
 the file is not found if you try to commit. In order for svn to understand, the
 command will be `svn mv from.txt to.rxt`
 

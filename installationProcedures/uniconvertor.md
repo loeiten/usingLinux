@@ -13,7 +13,7 @@ Possible error:
 ```
 #include <freetype/fterrors.h>
 ```
-This is adressed on
+This is addressed on
 https://gist.github.com/shingonoide/8172291
 
 The solution is to
