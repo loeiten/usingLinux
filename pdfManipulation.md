@@ -51,3 +51,5 @@ http://superuser.com/questions/232553/how-to-change-internal-page-numbers-in-the
 ```
 qpdf -decrypt test.pdf editable.pdf
 ```
+On Windows, Adobe Pro can perform the same features under `tools` -> `permissions`.
+**Note**: that this deletes the chapter bookmarks, and can convert some pages to `.png`.
