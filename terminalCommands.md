@@ -15,7 +15,7 @@ http://www.ee.surrey.ac.uk/Teaching/Unix/
 * [Display text](#display-text)
 * [Redirecting output](#redirecting-output)
 * [File commands](#file-commands)
-* [Enviromental variables](#enviromental-variables)
+* [Environmental variables](#environmental-variables)
 * [Search commands](#search-commands)
 * [Replace strings in multiple files](#replace-strings-in-multiple-files)
 * [Keyboard shortcuts](#keyboard-shortcuts)
@@ -105,7 +105,7 @@ where
 * Use `-x` to extract
 
 
-## Enviromental variables
+## Environmental variables
 Variables available in the terminal
 
 Command                 | Effect
@@ -118,7 +118,7 @@ Command                 | Effect
 `$SHELL`                | Variable which stores the shell
 `$PATH`                 | Variable which stores where to search for commands (executables) like `ls`
 `$PS1`                  | Tells what to display in prompt
-`set`                   | Views all current enviroment variables
+`set`                   | Views all current environment variables
 
 **NOTE**:
 Aliasing can be used to redefine commands (this can be stored in `~/.bashrc` so
@@ -137,7 +137,7 @@ on how one can search for stuff on linux.
 * [Search for text in files](#search-for-text-in-files)
 * [Search within pdf files](#search-within-pdf-files)
 
-Once you get a hang of this, I highly encourag you to have a look at `regex`
+Once you get a hang of this, I highly encourage you to have a look at `regex`
 when one get a hang of this. Although learning `regex` seem daunting at first,
 the power can not be emphasized enough. See for example:
 
@@ -145,7 +145,7 @@ http://www.tutorialspoint.com/python/python_reg_expressions.htm
 
 which shows how `regex` can be used with python.
 
-For now, it suffice to know the `*` wildcard in regex, which matches
+For now, it suffice to know the `*` wild card in regex, which matches
 everything. Example:
 
 * `*.txt` will match everything which ends with `.txt`, for example `foo.txt`
@@ -225,7 +225,7 @@ http://stackoverflow.com/questions/4643438/how-to-search-contents-of-multiple-pd
 
 
 ## Replace strings in multiple files
-This can be very handy when used correclty
+This can be very handy when used correctly
 ```
 grep -rl "matchstring" somedir/ | xargs sed -i 's/string1/string2/g'
 ```
