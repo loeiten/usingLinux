@@ -3,6 +3,7 @@
 ...through own experience
 
 - [MPI](#mpi)
+- [PETSc](#petsc)
 - [On laptop](#on-laptop)
 - [On jess](#on-jess)
 
@@ -10,38 +11,35 @@
 Do not install mpi in the way described in the manual, as this can give rise to
 several mpi binaries (this will result in all processors giving processor nr 0.
 Instead install through [conda](python.md)
+
 ```
 conda install mpich2
 ```
+
 Alternative, download mpich-3.1.4 and
+
 ```
 ./configure --prefix=$HOME/local CC=gcc CXX=g++ FC=gfortran
 ```
 
-## On laptop
-### Preparations
-```
-sudo apt-get install libfftw3-dev libnetcdf-dev
-```
-install netcdf4 through [conda](python.md)
-
-**NOTE**: Version 1.2.2 can give problems, but version 1.2.1 seem to work
-
-### Install PETSc
+## PETSc
 This shows how to install PETSc with sundials with letting PETSc install
 sundials.
-Currently PETSc-3.4.5 is working nicely.
+Currently PETSc-3.6.3 is working nicely.
 ```
 sudo apt-get install gfortran
 ```
+
 ```
 cd ~
-wget http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.4.5.tar.gz
-tar -xzvf petsc-3.4.5.tar.gz
-rm petsc-3.4.5.tar.gz
-cd petsc-3.4.5
+wget http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.6.3.tar.gz
+tar -xzvf petsc-3.6.3.tar.gz
+rm petsc-3.6.3.tar.gz
+cd petsc-3.6.3
 ```
+
 switch to python 2 (what a shame...)
+
 ```
 ./configure \
 --with-clanguage=cxx \
@@ -51,22 +49,47 @@ switch to python 2 (what a shame...)
 --with-shared-libraries=0 \
 --with-sundials \
 --download-sundials \
---download-f-blas-lapack=1
+--download-fblaslapack=1
 ```
+
 Check that everything works, if not, it could be that downloading with PETSc
 can help. See BOUT's user manual for more info.
+
 ```
-make PETSC_DIR=$HOME/petsc-3.4.5 PETSC_ARCH=arch-linux2-cxx-debug all
+make PETSC_DIR=$HOME/petsc-3.6.3 PETSC_ARCH=arch-linux2-cxx-debug all
 ```
+
 Testing
+
 ```
-make PETSC_DIR=$HOME/petsc-3.4.5 PETSC_ARCH=arch-linux2-cxx-debug test
+make PETSC_DIR=$HOME/petsc-3.6.3 PETSC_ARCH=arch-linux2-cxx-debug test
 ```
+
+## On laptop
+### Preparations
+```
+sudo apt-get install libfftw3-dev libnetcdf-dev
+```
+install netcdf4 through [conda](python.md)
+
+**NOTE**: `netcdf4` version `1.2.2` can give
+
+```
+WARNING: netcdf4-python module not found
+         expect poor performance
+           => Using scipy.io.netcdf instead
+```
+
+`netcdf4` version `1.2.1` seem to work
+
+Install [PETSc](#petsc)
+
+
 
 ### Configure BOUT-dev
 cd into the BOUT-dev folder
 ```
-./configure --with-checks=3 --with-track --with-debug --with-petsc=$HOME/petsc-3.4.5 --with-sundials
+./configure --with-checks=3 --with-track --with-debug --with-petsc
 make
 cd examples/bout_runners_example
 python 6a-run_with_MMS_post_processing_specify_numbers.py
@@ -102,46 +125,22 @@ export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
 source ~/.bashrc
 ```
 
-### Install PETSc
-**NOTE**: This section is currently untested due to 'GFORTRAN_1.4' issues with
-anaconda
-
-This shows how to install PETSc with sundials with letting PETSc install
-sundials.
-Currently PETSc-3.4.5 is working nicely.
-```
-cd ~
-wget http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.4.5.tar.gz
-tar -xzvf petsc-3.4.5.tar.gz
-rm petsc-3.4.5.tar.gz
-cd petsc-3.4.5
-```
-switch to python 2 (what a shame...)
-```
-./configure \
---with-clanguage=cxx \
---with-mpi=1 \
---with-precision=double \
---with-scalar-type=real \
---with-shared-libraries=0 \
---with-sundials \
---download-sundials \
-```
-Check that everything works, if not, it could be that downloading with PETSc
-can help. See BOUT's user manual for more info.
-```
-make PETSC_DIR=$HOME/petsc-3.4.5 PETSC_ARCH=arch-linux2-cxx-debug all
-```
-Testing
-```
-make PETSC_DIR=$HOME/petsc-3.4.5 PETSC_ARCH=arch-linux2-cxx-debug test
-```
-
 ### Configure BOUT-dev
 cd into the BOUT-dev folder
 ```
-./configure --with-checks=no --with-fftw=$HOME/local --with-netcdf=$HOME/local --with-petsc=$HOME/petsc-3.4.5 --with-sundials
+./configure --with-checks=no --with-fftw=$HOME/local --with-netcdf=$HOME/local --with-petsc
 make
 cd examples/bout_runners_example
 python 9-PBS_with_MMS_post_processing_grid_file.py
 ```
+This should run without problems
+
+**NOTE**: `netcdf4` version `1.2.2` can give
+
+```
+WARNING: netcdf4-python module not found
+         expect poor performance
+           => Using scipy.io.netcdf instead
+```
+
+`netcdf4` version `1.2.1` seem to work
