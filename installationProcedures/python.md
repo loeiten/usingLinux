@@ -3,6 +3,12 @@
 **NOTE**: This also works on clusters, and places where one do not have root
 access
 
+1. [Install using anaconda](#install-using-anaconda)
+2. [Install the essentials](#install-the-essentials)
+3. [Make a python 2.7 environment](#make-a-python-2.7-environment)
+4. [Contribute to package development](#contribute-to-package-development)
+5. [Install from binstar](#install-from-binstar)
+
 ## Install using anaconda
 The easiest way to install python and packages are through anaconda
 https://store.continuum.io/cshop/anaconda/
@@ -61,6 +67,27 @@ To switch back, type
 ```
 source deactivate
 ```
+
+## Contribute to package development
+Currently (at the time of writing) there is no easy way to download a package
+directly from github using conda.
+
+As a workaround one can make an environment with conda
+
+```
+conda create -n myDevelEnv anaconda
+```
+
+The package can be cloned from github in standard way, and installation of the
+package can usually be done by
+
+```
+python setup.py develop
+```
+
+Note that this will install into the current environment.
+
+https://github.com/sympy/sympy/pull/10837
 
 ## Install from binstart
 **NOTE**: One can always install through `pip` in `conda`.
