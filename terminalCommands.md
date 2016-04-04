@@ -135,6 +135,7 @@ on how one can search for stuff on linux.
 
 * [Finding files and folders](#finding-files-and-folders)
 * [Search for text in files](#search-for-text-in-files)
+* [Combined search](#combined-search)
 * [Search within pdf files](#search-within-pdf-files)
 
 Once you get a hang of this, I highly encourage you to have a look at `regex`
@@ -213,6 +214,22 @@ grep -nrI "boutdata" * | grep -Iv "boutdata\."
 
 http://www.thegeekstuff.com/2009/03/15-practical-unix-grep-command-examples/
 http://www.cyberciti.biz/faq/howto-use-grep-command-in-linux-unix/
+
+### Combined search
+`grep` and `find` can be combined. Either one can
+
+```
+find . -iname "*.ipynb" | xargs grep -nrI "collect"
+```
+
+or
+
+```
+find . -iname "*.ipynb" -exec grep -nrI "collect" {} \+
+```
+
+http://unix.stackexchange.com/questions/20262/how-do-i-pass-a-list-of-files-to-grep
+
 
 ### Search within pdf files
 `pdfgrep` can search through pdf's
