@@ -247,8 +247,14 @@ This can be very handy when used correctly
 grep -rl "matchstring" somedir/ | xargs sed -i 's/string1/string2/g'
 ```
 
-**NOTE**: Double quotation marks can be used in the sed string
+### Special characters
+Assuimg we would like to change `abspath('./../')` to `abspath('./../../')`, we could write
 
+```
+grep -rl "abspath('./../')" . | xargs sed -i "s/abspath('.\/..\/')/abspath('.\/..\/..\/')/g"
+```
+
+### Change over several lines
 If one have to replace over several lines, one can use a combination of
 `pcgrep` and `perl`
 
