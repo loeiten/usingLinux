@@ -1,11 +1,11 @@
 # Install vim
 
 This will get and build vim if you are super user.
-* [Build vim](build-vim)
-* [Install vundle](install-vundle)
-* [Install NerdTree](install-nerdtree)
-* [Install You Complete Me](install-ycm)
-* [Install pyclewn](install-pyclewn)
+* [Build vim](#build-vim)
+* [Install vundle](#install-vundle)
+* [Install NerdTree](#install-nerdtree)
+* [Install You Complete Me](#install-ycm)
+* [Install pyclewn](#install-pyclewn)
 
 ## Build vim
 Modified from: https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source
