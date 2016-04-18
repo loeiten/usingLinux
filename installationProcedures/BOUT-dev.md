@@ -128,8 +128,8 @@ source ~/.bashrc
 ### Configure BOUT-dev
 cd into the BOUT-dev folder
 ```
-./configure --with-checks=no --with-fftw=$HOME/local --with-netcdf=$HOME/local --with-petsc
-make
+./configure --with-checks=no --with-fftw --with-netcdf --with-petsc --with-optimize=3
+make clean && make
 cd examples/bout_runners_example
 python 9-PBS_with_MMS_post_processing_grid_file.py
 ```
