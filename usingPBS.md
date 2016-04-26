@@ -26,7 +26,7 @@ http://docs.adaptivecomputing.com/ -> Archived Documentation
 `qstat`                                        | Prints jobs currently running on the cluster
 `qstat -u username`                            | Prints the jobs submitted by `username`
 `qdel pid`                                     | Delete the job with process id `pid`
-``qdel `seq -f "%.0f" 512173 512175``          | Delete the jobs `512173`, `512174` and `512175`
+``qdel `seq -f "%.0f" 512173 512175` ``        | Delete the jobs `512173`, `512174` and `512175`
 `qdel all`                                     | Delete all jobs (your jobs if you are not admin)
 
 ## Example script
