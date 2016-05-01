@@ -25,6 +25,8 @@ http://docs.adaptivecomputing.com/ -> Archived Documentation
 `qsub -W depend=afterok:pid myOtherPBSScript`  | Submits a job to the cluster after `pid` is done
 `qstat`                                        | Prints jobs currently running on the cluster
 `qstat -u username`                            | Prints the jobs submitted by `username`
+`qhold pid`                                    | Prevent job `pid` to run until released
+`qrls pid`                                     | Releases job `pid` from a hold
 `qdel pid`                                     | Delete the job with process id `pid`
 ``qdel `seq -f "%.0f" 512173 512175` ``        | Delete the jobs `512173`, `512174` and `512175`
 `qdel all`                                     | Delete all jobs (your jobs if you are not admin)
