@@ -2,9 +2,18 @@
 
 Tips and tricks when working with LaTeX
 
+* [Source code in LaTeX](#source-code-in-latex)
 * [Setup kile](#setup-kile)
 * [texdiff](#texdiff)
 * [Embed videos](#embed-videos)
+
+## Source code in LaTeX
+The `minted` package seems to do the job best (at the time of writing).
+It uses the `pygment` package, which can also be used, but it can be a
+bit more cumbersome to use.
+
+https://www.sharelatex.com/learn/Code_Highlighting_with_minted
+http://pygments.org/
 
 ## Setup kile
 When going "outside the box", kile usually needs some modifications
