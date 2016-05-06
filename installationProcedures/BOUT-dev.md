@@ -25,17 +25,17 @@ Alternative, download mpich-3.1.4 and
 ## PETSc
 This shows how to install PETSc with sundials with letting PETSc install
 sundials.
-Currently PETSc-3.6.3 is working nicely.
+Currently PETSc-3.5.4 is working nicely.
 ```
 sudo apt-get install gfortran
 ```
 
 ```
 cd ~
-wget http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.6.3.tar.gz
-tar -xzvf petsc-3.6.3.tar.gz
-rm petsc-3.6.3.tar.gz
-cd petsc-3.6.3
+wget http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.5.4.tar.gz
+tar -xzvf petsc-3.5.4.tar.gz
+rm petsc-3.5.4.tar.gz
+cd petsc-3.5.4
 ```
 
 switch to python 2 (what a shame...)
@@ -56,14 +56,22 @@ Check that everything works, if not, it could be that downloading with PETSc
 can help. See BOUT's user manual for more info.
 
 ```
-make PETSC_DIR=$HOME/petsc-3.6.3 PETSC_ARCH=arch-linux2-cxx-debug all
+make PETSC_DIR=$HOME/petsc-3.5.4 PETSC_ARCH=arch-linux2-cxx-debug all
 ```
 
 Testing
 
 ```
-make PETSC_DIR=$HOME/petsc-3.6.3 PETSC_ARCH=arch-linux2-cxx-debug test
+make PETSC_DIR=$HOME/petsc-3.5.4 PETSC_ARCH=arch-linux2-cxx-debug test
 ```
+
+Add the following line to your `.bashrc`:
+
+```
+export PETSC_DIR=$HOME/petsc-3.5.4
+```
+
+Run the same command in your shell.
 
 ## On laptop
 ### Preparations
