@@ -37,8 +37,9 @@ cd vim
 make VIMRUNTIMEDIR=/usr/share/vim/vim74
 ```
 There are two alternatives from here
-a) `sudo make install`
-b) `sudo apt-get install checkinstall &&  sudo checkinstall`
+
+1. `sudo make install`
+2. `sudo apt-get install checkinstall &&  sudo checkinstall`
    this works, but has given troubles with package manager
 
 Then
