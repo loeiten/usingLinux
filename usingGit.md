@@ -15,6 +15,8 @@ When everything fails, and you forget how to git
 - [Resolve a confilct](#resolve-a-confilct)
 - [Git on USB](#git-on-usb)
 - [Download git on cluster](#download-git-on-cluster)
+- [Branch off last commit](#branch-off-last-commit)
+- [Move between repositories](#move-between-repositories)
 
 ## Warm-up tutorials
 http://readwrite.com/2013/09/30/understanding-github-a-journey-for-beginners-part-1#awesm=~oFlQCvoJank0tf
@@ -170,3 +172,37 @@ export PATH=$PATH:$HOME/src/git/bin
 # # Using git
 # export PATH=$PATH:$HOME/src/git/bin
 ```
+
+## Branch off last commit
+**Warning**: This rewrites your history! Use with *EXTREME* caution.
+
+```
+git branch newbranch
+git reset --hard HEAD~1 # Go back 1 commits. You *will* lose uncommitted work
+git checkout newbranch
+git rebase <previous checksum>
+git checkout master
+git push --force
+```
+
+http://stackoverflow.com/questions/1628563/move-the-most-recent-commits-to-a-new-branch-with-git
+
+## Move between repositories
+
+We want to move directory `dir1` from `gitRepoA` to `gitRepoB`
+
+```
+git clone <gitRepoA url> # Do this someplace else than your standard repo
+cd <gitRepoA directory>
+git remote rm origin # So that we don't accidentally mess up
+git filter-branch --subdirectory-filter <path/to/dir1> -- --all
+ll # See the changes in your repo
+
+git clone <gitRepoB url>
+cd <gitRepoB directory>
+git remote add gitRepoA-branch <path/to/gitRepoA>
+git pull gitRepoA-branch master
+git remote rm gitRepoA-branch
+```
+
+http://gbayer.com/development/moving-files-from-one-git-repository-to-another-preserving-history/
