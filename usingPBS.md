@@ -20,7 +20,7 @@ http://docs.adaptivecomputing.com/ -> Archived Documentation
 ## Commonly used commands
 
  Command                                       | Result
------------------------------------------------|--------------------------------------------------|
+-----------------------------------------------|--------------------------------------------------------|
 `qsub myPBSScript`                             | Submits a job to the cluster
 `qsub -W depend=afterok:pid myOtherPBSScript`  | Submits a job to the cluster after `pid` is done
 `qstat`                                        | Prints jobs currently running on the cluster
@@ -30,6 +30,7 @@ http://docs.adaptivecomputing.com/ -> Archived Documentation
 `qdel pid`                                     | Delete the job with process id `pid`
 ``qdel `seq -f "%.0f" 512173 512175` ``        | Delete the jobs `512173`, `512174` and `512175`
 `qdel all`                                     | Delete all jobs (your jobs if you are not admin)
+`showq`                                        | Show the queue (works at least with `Maui` scheduler)
 
 ## Example script
 
