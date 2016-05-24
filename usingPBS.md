@@ -30,6 +30,7 @@ http://docs.adaptivecomputing.com/ -> Archived Documentation
 `qdel pid`                                     | Delete the job with process id `pid`
 ``qdel `seq -f "%.0f" 512173 512175` ``        | Delete the jobs `512173`, `512174` and `512175`
 `qdel all`                                     | Delete all jobs (your jobs if you are not admin)
+`qstat -q`                                     | Shows available queues and their walltime-limit
 `showq`                                        | Show the queue (works at least with `Maui` scheduler)
 
 ## Example script
