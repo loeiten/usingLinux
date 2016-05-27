@@ -117,21 +117,24 @@ downloading the scipy library to 0.16.0
 https://github.com/ContinuumIO/anaconda-issues/issues/686
 
 ## On jess
-Installation of fftw
+### Installation of `fftw`
+Follow the instructions in the `user_manual`, and configure with
 ```
 ./configure --prefix=$HOME/local
 ```
-Installation of netcdf-4.1.3
+### Installation of `netcdf-4.1.3`
+Before the installation
 ```
 conda install hdf5=1.8.9
 ./configure --prefix=$HOME/local CPPFLAGS="-I/$HOME/anaconda3/include" LDFLAGS="-I/$HOME/anaconda3/lib"
 export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
 ```
-Put this in your ~/.bashrc
+Put this in your `~/.bashrc`
 ```
 export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
 source ~/.bashrc
 ```
+follow the instructions given in the `user_manual`
 
 ### Configure BOUT-dev
 cd into the BOUT-dev folder
