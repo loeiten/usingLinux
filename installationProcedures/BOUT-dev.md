@@ -7,6 +7,11 @@
 - [On laptop](#on-laptop)
 - [On jess](#on-jess)
 
+**NOTE**: 
+
+1. This note is written for BOUT-dev 3.0.
+2. It is highly recommended to clone from the [BOUT-dev](https://github.com/boutproject/BOUT-dev) repository.
+
 ## MPI
 Do not install mpi in the way described in the manual, as this can give rise to
 several mpi binaries (this will result in all processors giving processor nr 0.
