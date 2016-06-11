@@ -28,6 +28,7 @@ Key           | Effect
 <kbd>n</kbd>  | Next pane
 <kbd>p</kbd>  | Previous pane
 <kbd>w</kbd>  | List windows
+<kbd>[</kbd>  | Enables scroll, exit with <kbd>q</kbd>
 <kbd>;</kbd>  | Enter `tmux` commands
 
 
