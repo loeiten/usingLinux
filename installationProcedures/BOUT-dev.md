@@ -58,7 +58,11 @@ Alternative, download mpich-3.1.4 and
 ```
 
 
-## Install Sundials
+## Installation of optional external libraries
+
+Installation of these are optional, but recommended.
+
+### Install Sundials
 
 At the time of writing, sundials can be obtained by
 
@@ -91,7 +95,7 @@ make install
 
 but be aware that the url will probably change as new versions will come.
 
-## Install PETSc
+### Install PETSc
 
 Currently PETSc-3.5.4 is working nicely.
 
@@ -145,9 +149,11 @@ export PETSC_DIR=$HOME/petsc-3.5.4
 
 Run the same command in your shell.
 
-##  BOUT-dev installation on laptop
+## BOUT-dev installation
 
-### Preparations
+###  BOUT-dev installation on laptop
+
+#### Preparations
 ```
 sudo apt-get install libfftw3-dev libnetcdf-dev
 ```
@@ -163,12 +169,12 @@ WARNING: netcdf4-python module not found
 
 `netcdf4` version `1.2.1` seem to work
 
-Install [Sundials](#install-sundials)
-Install [PETSc](#install-petsc)
+* Install [Sundials](#install-sundials)
+* Install [PETSc](#install-petsc)
 
 
 
-### Configure BOUT-dev
+#### Configure BOUT-dev
 cd into the BOUT-dev folder
 
 ```
@@ -196,9 +202,9 @@ export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libgfortran.so.3
 downloading the scipy library to 0.16.0
 https://github.com/ContinuumIO/anaconda-issues/issues/686
 
-## BOUT-dev installation on jess
+### BOUT-dev installation on jess
 
-### Installation of `fftw`
+#### Installation of `fftw`
 
 Follow the instructions in the `user_manual`, and configure with
 
@@ -206,7 +212,7 @@ Follow the instructions in the `user_manual`, and configure with
 ./configure --prefix=$HOME/local
 ```
 
-### Installation of `netcdf-4.1.3`
+#### Installation of `netcdf-4.1.3`
 
 Before the installation
 
@@ -225,7 +231,12 @@ source ~/.bashrc
 
 follow the instructions given in the `user_manual`
 
-### Configure BOUT-dev
+#### Configure BOUT-dev
+
+If you want `sundials` and `PETSc`, see
+
+* Install [Sundials](#install-sundials)
+* Install [PETSc](#install-petsc)
 
 cd into the BOUT-dev folder
 
