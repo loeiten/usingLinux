@@ -8,10 +8,29 @@
 * [Compiz](#compiz)
 
 ## Split screen bash
-The `screen` function in `bash` makes it possible to split the screen. This can
-be useful when working on clusters. See
+Usually `screen` is installed. However, old versions lacked vertical splitting.
+As an alternative, on could use `screen` on steroids, a.k.a `tmux`. For local
+installation, see [tmuxLocalInstall.sh](shellScripts/tmuxLocalInstall.sh).
 
-http://unix.stackexchange.com/questions/7453/how-to-split-the-terminal-into-more-than-one-view
+### Keybindings `tmux`
+
+All keybindings start with <kbd>Ctrl</kbd> + <kbd>b</kbd>
+
+Key           | Effect
+--------------|-----------------------------------------------
+<kbd>b</kbd>  | Change directory "up" on level
+<kbd>%</kbd>  | Create new window in vertical pane
+<kbd>"</kbd>  | Create new window in horizontal pane
+<kbd>o</kbd>  | Next pane
+<kbd>Up</kbd> | Move to pane above (works with all arrow-keys)
+<kbd>c</kbd>  | (Create) new window
+<kbd>,</kbd>  | Rename window
+<kbd>n</kbd>  | Next pane
+<kbd>p</kbd>  | Previous pane
+<kbd>w</kbd>  | List windows
+<kbd>;</kbd>  | Enter `tmux` commands
+
+
 
 ## Invert colors
 1. `sudo apt-get install xcalib`
