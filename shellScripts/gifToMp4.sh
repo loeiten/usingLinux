@@ -1,9 +1,4 @@
 #!/usr/bin/env bash
-# Info:
-# Converts all *.gif in the current folder into *.mp4
-#
-# Requires:
-# FFmpeg
 
 # Bash script
 # http://www.cyberciti.biz/faq/bash-loop-over-file/
@@ -19,7 +14,9 @@ do
     echo "Working with $f"
     # Get file extension
     # http://stackoverflow.com/questions/965053/extract-filename-and-extension-in-bash
-    echo "ffmpeg -f gif -i $f mp4/${f%.*}.mp4"
+    # -r is the fps, if this is not set, it will skip the last frames
+    # -b is the bitrate, if this is not set, bad quality is expected
+    echo "ffmpeg gif -i $f -r 30 -b 4096k mp4/${f%.*}.mp4"
     echo ""
-    ffmpeg -f gif -i "$f" mp4/"${f%.*}".mp4
+    ffmpeg -f gif -i "$f"  -r 30 -b 4096k mp4/"${f%.*}".mp4
 done
