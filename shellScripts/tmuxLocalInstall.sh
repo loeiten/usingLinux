@@ -3,9 +3,9 @@
 # This based on https://gist.github.com/brandondrew/3915551, which is a fork of
 # https://gist.github.com/ryin/3106801. See also
 
-TMUX_VERSION="1.7"
-LIBEVENT_VERSION="2.0.20"
-NCURSES_VERSION="5.9"
+TMUX_VERSION="2.2"
+LIBEVENT_VERSION="2.0.22"
+NCURSES_VERSION="6.0"
 
 # Script for installing tmux on systems where you don't have root access.
 # tmux will be installed in $HOME/local/bin.
@@ -19,8 +19,8 @@ mkdir -p $HOME/local $HOME/tmux_tmp
 cd $HOME/tmux_tmp
 
 # download source files for tmux, libevent, and ncurses
-wget -O tmux-${TMUX_VERSION}.tar.gz http://sourceforge.net/projects/tmux/files/tmux/tmux-${TMUX_VERSION}/tmux-${TMUX_VERSION}.tar.gz/download
-wget https://github.com/downloads/libevent/libevent/libevent-${LIBEVENT_VERSION}-stable.tar.gz
+wget -O tmux-${TMUX_VERSION}.tar.gz https://github.com/tmux/tmux/releases/download/${TMUX_VERSION}/tmux-${TMUX_VERSION}.tar.gz
+wget https://github.com/libevent/libevent/releases/download/release-${LIBEVENT_VERSION}-stable/libevent-${LIBEVENT_VERSION}-stable.tar.gz
 wget http://ftp.gnu.org/gnu/ncurses/ncurses-${NCURSES_VERSION}.tar.gz
 
 # extract files, configure, and compile
