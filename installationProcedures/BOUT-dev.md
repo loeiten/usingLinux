@@ -167,7 +167,7 @@ WARNING: netcdf4-python module not found
            => Using scipy.io.netcdf instead
 ```
 
-`netcdf4` version `1.2.1` seem to work
+`netcdf4` version `1.2.1` seem to work  (install with `conda install netcdf4=1.2.1`)
 
 * Install [Sundials](#install-sundials)
 * Install [PETSc](#install-petsc)
@@ -257,4 +257,4 @@ WARNING: netcdf4-python module not found
            => Using scipy.io.netcdf instead
 ```
 
-`netcdf4` version `1.2.1` seem to work
+`netcdf4` version `1.2.1` seem to work (install with `conda install netcdf4=1.2.1`)
