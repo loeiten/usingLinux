@@ -6,6 +6,7 @@
 - [Installation of optional external libraries](#installation-of-optional-external-libraries)
     - [Install Sundials](#install-sundials)
     - [Install PETSc](#install-petsc)
+    - [Install SLEPc](#install-slepc)
 - [BOUT-dev installation](#bout-dev-installation)
     - [BOUT-dev installation on laptop](#bout-dev-installation-on-laptop)
     - [BOUT-dev installation on jess](#bout-dev-installation-on-jess)
@@ -97,7 +98,7 @@ but be aware that the url will probably change as new versions will come.
 
 ### Install PETSc
 
-Currently PETSc-3.5.4 is working nicely.
+Currently PETSc-3.4.5 is working nicely.
 
 Before you start you may have to install `gfortran` (this is usually installed
 on the clusters)
@@ -110,44 +111,67 @@ continue with
 
 ```
 cd ~
-wget http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.5.4.tar.gz
-tar -xzvf petsc-3.5.4.tar.gz
-rm petsc-3.5.4.tar.gz
-cd petsc-3.5.4
-```
-
-switch to python 2 (what a shame...)
-
-```
-./configure \
+wget http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.4.5.tar.gz
+tar -xzvf petsc-3.4.5.tar.gz
+rm petsc-3.4.5.tar.gz
+cd petsc-3.4.5
+python2 ./configure \
 --with-clanguage=cxx \
 --with-mpi=1 \
 --with-precision=double \
 --with-scalar-type=real \
 --with-shared-libraries=0 \
---download-fblaslapack=1
+--download-fblaslapack=1 \
+--download-f2cblaslapack=1
 ```
 
-Check that everything works, if not, it could be that downloading with PETSc
-can help. See BOUT's user manual for more info.
+Check that everything works, if not, it could be that downloading additional
+libraries with PETSc can help. See BOUT's user manual for more info.
 
 ```
-make PETSC_DIR=$HOME/petsc-3.5.4 PETSC_ARCH=arch-linux2-cxx-debug all
+make PETSC_DIR=$HOME/petsc-3.4.5 PETSC_ARCH=arch-linux2-cxx-debug all
 ```
 
 Testing
 
 ```
-make PETSC_DIR=$HOME/petsc-3.5.4 PETSC_ARCH=arch-linux2-cxx-debug test
+make PETSC_DIR=$HOME/petsc-3.4.5 PETSC_ARCH=arch-linux2-cxx-debug test
 ```
 
 Add the following line to your `.bashrc`:
 
 ```
-export PETSC_DIR=$HOME/petsc-3.5.4
+export PETSC_DIR=$HOME/petsc-3.4.5
 ```
 
 Run the same command in your shell.
+
+
+### Install SLEPc
+
+`PETSc` must be installed with the following written in the `.bashrc`
+
+```
+export PETSC_DIR=$HOME/petsc-3.4.4
+export PETSC_ARCH=arch-linux2-cxx-debug
+export SLEPC_DIR=$HOME/slepc-3.4.4
+```
+
+The same commands must be written in the terminal. Installation can now be done
+with
+
+```
+cd ~
+wget http://slepc.upv.es/download/download.php?filename=slepc-3.4.4.tar.gz
+tar xzf slepc-3.4.4.tar.gz
+rm slepc-3.4.4.tar.gz
+cd slepsc-3.4.4
+python2 ./configure
+make SLEPC_DIR=$PWD PETSC_DIR=/home/mmag/petsc-3.4.4
+PETSC_ARCH=arch-linux2-cxx-debug
+make-test
+```
+
 
 ## BOUT-dev installation
 
@@ -171,6 +195,7 @@ WARNING: netcdf4-python module not found
 
 * Install [Sundials](#install-sundials)
 * Install [PETSc](#install-petsc)
+* Install [SLEPc](#install-slepc)
 
 
 
@@ -178,7 +203,7 @@ WARNING: netcdf4-python module not found
 cd into the BOUT-dev folder
 
 ```
-./configure --with-checks=3 --with-track --with-debug --with-petsc --with-sundials
+./configure --with-checks=3 --with-track --with-debug --with-petsc --with-slepc --with-sundials
 make
 cd examples/bout_runners_example
 python 6a-run_with_MMS_post_processing_specify_numbers.py
@@ -241,7 +266,7 @@ If you want `sundials` and `PETSc`, see
 cd into the BOUT-dev folder
 
 ```
-./configure --with-checks=no --with-fftw --with-netcdf --with-petsc --with-sundials --with-optimize=3
+./configure --with-checks=no --with-fftw --with-netcdf --with-petsc --with-slepc --with-sundials --with-optimize=3
 make clean && make
 cd examples/bout_runners_example
 python 9-PBS_with_MMS_post_processing_grid_file.py
