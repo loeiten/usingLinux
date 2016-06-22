@@ -264,6 +264,7 @@ If you want `sundials` and `PETSc`, see
 
 * Install [Sundials](#install-sundials)
 * Install [PETSc](#install-petsc)
+* Install [SLEPc](#install-slepc)
 
 cd into the BOUT-dev folder
 
