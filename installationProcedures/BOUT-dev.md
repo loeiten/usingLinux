@@ -152,7 +152,7 @@ Run the same command in your shell.
 `PETSc` must be installed with the following written in the `.bashrc`
 
 ```
-export PETSC_DIR=$HOME/petsc-3.4.4
+export PETSC_DIR=$HOME/petsc-3.4.5
 export PETSC_ARCH=arch-linux2-cxx-debug
 export SLEPC_DIR=$HOME/slepc-3.4.4
 ```
@@ -162,13 +162,15 @@ with
 
 ```
 cd ~
-wget http://slepc.upv.es/download/download.php?filename=slepc-3.4.4.tar.gz
+wget http://slepc.upv.es/download/download.php?filename=slepc-3.4.4.tar.gz -O slepc-3.4.4.tar.gz
 tar xzf slepc-3.4.4.tar.gz
 rm slepc-3.4.4.tar.gz
-cd slepsc-3.4.4
+cd slepc-3.4.4
 python2 ./configure
-make SLEPC_DIR=$PWD PETSC_DIR=/home/mmag/petsc-3.4.4
-PETSC_ARCH=arch-linux2-cxx-debug
+```
+Check that everything works
+```
+make SLEPC_DIR=$PWD PETSC_DIR=/home/mmag/petsc-3.4.4 PETSC_ARCH=arch-linux2-cxx-debug
 make-test
 ```
 
