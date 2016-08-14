@@ -17,6 +17,7 @@ When everything fails, and you forget how to git
 - [Download git on cluster](#download-git-on-cluster)
 - [Branch off last commit](#branch-off-last-commit)
 - [Move between repositories](#move-between-repositories)
+- [Using patches](#using-patches)
 
 ## Warm-up tutorials
 http://readwrite.com/2013/09/30/understanding-github-a-journey-for-beginners-part-1#awesm=~oFlQCvoJank0tf
