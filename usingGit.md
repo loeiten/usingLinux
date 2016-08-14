@@ -206,3 +206,41 @@ git remote rm gitRepoA-branch
 ```
 
 http://gbayer.com/development/moving-files-from-one-git-repository-to-another-preserving-history/
+
+## Using patches
+
+Make the 4 last commits into one patchfile
+*NOTE*: Make sure that the repo is clean before applying patches
+
+```
+git clean -dxfi
+```
+
+then
+
+```
+# Make
+git format-patch HEAD~4..HEAD --stdout > changes.patch
+
+# Apply (signoff marks the commit where the patch was applied)
+git am --signoff < changes.patch
+```
+
+Eventually
+
+```
+# Make
+git format-patch master --stdout > changes.diff
+
+# Apply
+git am --signoff < my_new_patch.diff
+```
+
+There may be problems with whitespaces, in that case:
+
+```
+git apply --ignore-space-change --ignore-whitespace mychanges.patch
+```
+
+http://stackoverflow.com/questions/4770177/git-patch-does-not-apply
+https://ariejan.net/2009/10/26/how-to-create-and-apply-a-patch-with-git/
