@@ -18,6 +18,7 @@ When everything fails, and you forget how to git
 - [Branch off last commit](#branch-off-last-commit)
 - [Move between repositories](#move-between-repositories)
 - [Using patches](#using-patches)
+- [Delete large files](#delete-large-files)
 
 ## Warm-up tutorials
 http://readwrite.com/2013/09/30/understanding-github-a-journey-for-beginners-part-1#awesm=~oFlQCvoJank0tf
@@ -245,3 +246,17 @@ git apply --ignore-space-change --ignore-whitespace mychanges.patch
 
 http://stackoverflow.com/questions/4770177/git-patch-does-not-apply
 https://ariejan.net/2009/10/26/how-to-create-and-apply-a-patch-with-git/
+
+## Delete large files
+
+Assuming you want to delete the large file `foo`
+
+```
+git filter-branch -f --tree-filter 'rm -rf foo' HEAD
+git for-each-ref --format='delete %(refname)' refs/original | git update-ref --stdin
+git reflog expire --expire=now --all
+git gc --prune=now
+git push origin --force --all
+```
+
+http://dalibornasevic.com/posts/2-permanently-remove-files-and-folders-from-git-repo

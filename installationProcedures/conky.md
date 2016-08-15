@@ -17,7 +17,7 @@ order for conky to work.
    python makeSymlinks
    sudo apt-get install lm-sensors
    ```
-   
+
 2. Reply yes to all when installing the sensors
 
    ```
@@ -26,7 +26,7 @@ order for conky to work.
 3. Install conky
 
    ```
-   sudo apt-get install conky
+   sudo apt-get install conky conky-all
    ```
 4.  Open `startup applications`
 5. Click on `Add`
@@ -34,5 +34,5 @@ order for conky to work.
 7. Choose either a) or b)
 
    a) Add the command `conky -p 10`
-   
+
    b) Add the command `$HOME/.conky/.conky-startup.sh`
