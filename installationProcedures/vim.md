@@ -20,7 +20,8 @@ sudo apt-get remove vim vim-runtime gvim
 
 sudo apt-get remove vim-tiny vim-common vim-gui-common
 ```
-Then
+
+Then (assuming `Python3` and `Python2` is installed through Anaconda (see [installing python](./python.md)))
 
 ```
 cd ~
@@ -30,7 +31,9 @@ cd vim
             --enable-multibyte \
             --enable-rubyinterp \
             --enable-pythoninterp \
-            --with-python-config-dir=$HOME/anaconda3/lib/python3.5/config-3.5m \
+            --with-python-config-dir=$HOME/anaconda3/envs/py27/lib/python2.7/config \
+            --enable-python3interp \
+            --with-python3-config-dir=$HOME/anaconda3/lib/python3.5/config-3.5m \
             --enable-perlinterp \
             --enable-luainterp \
             --enable-gui=gtk2 --enable-cscope --prefix=/usr
