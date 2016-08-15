@@ -5,17 +5,16 @@ See the `conky` files are located in the
 order for conky to work.
 
 1. **NOTE**: The following will replace your dotfiles. Old dotfiles will be
-   saved to `dotfiles_old`
+   saved to `dotfilesOld`.
 
    ```
    cd ~
    git clone https://github.com/loeiten/dotfiles.git
    cd dotfiles
-   chmod +x makesymlinks.sh
    cd conky
    chmod +x *.sh
    cd ..
-   ./makesymlinks.sh
+   python makeSymlinks
    sudo apt-get install lm-sensors
    ```
    
