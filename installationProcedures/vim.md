@@ -14,7 +14,7 @@ Modified from: https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-
 sudo apt-get install libncurses5-dev libgnome2-dev libgnomeui-dev \
     libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
     libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev \
-    ruby-dev mercurial
+    ruby-dev mercurial cmake g++
 
 sudo apt-get remove vim vim-runtime gvim
 
@@ -57,7 +57,7 @@ sudo update-alternatives --set vi /usr/bin/vim
 Follow the instructions on https://github.com/gmarik/Vundle.vim
 
 ## Install NerdTree
-If the `vimrc` file is properly set up (see [install vundle](#install-vundle),
+If the `vimrc` file is properly set up (see [install vundle](#install-vundle)),
 then this should be possible to download with `:PluginInstall`
 
 ## Install YCM
