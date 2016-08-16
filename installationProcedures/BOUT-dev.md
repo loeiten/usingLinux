@@ -171,7 +171,7 @@ python2 ./configure
 Check that everything works
 ```
 make SLEPC_DIR=$PWD PETSC_DIR=/home/mmag/petsc-3.4.4 PETSC_ARCH=arch-linux2-cxx-debug
-make-test
+make test
 ```
 
 
@@ -181,8 +181,14 @@ make-test
 
 #### Preparations
 ```
+sudo apt-get install libfftw3-dev libnetcdf-cxx-legacy-dev
+```
+if this doesn't work, try
+```
 sudo apt-get install libfftw3-dev libnetcdf-dev
 ```
+but note that the file `netcdfcpp.h` seems to be missing from newer versions.
+
 install netcdf4 through [conda](python.md)
 
 **NOTE**: `netcdf4` version `1.2.2` can give
@@ -243,13 +249,32 @@ Follow the instructions in the `user_manual`, and configure with
 
 Before the installation
 
+*NOTE*: The following command may be deprecated, and may yield `The following specifications were found to be in conflict`
+
 ```
 conda install hdf5=1.8.9
+```
+
+followed by
+
+```
+cd ~
+mkdir local
+cd local
+mkdir examples
+cd ..
+mkdir install
+cd install
+wget http://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-4.1.3.tar.gz
+tar -xzvf netcdf-4.1.3.tar.gz 
+cd netcdf-4.1.3
 ./configure --prefix=$HOME/local CPPFLAGS="-I/$HOME/anaconda3/include" LDFLAGS="-I/$HOME/anaconda3/lib"
 export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
 ```
 
-Put this in your `~/.bashrc`
+*NOTE*: This may return `configure: error: Can't find or link to the hdf5 library. Use --disable-netcdf-4, or see config.log for errors.`, which means that `hdf5` may have to be built manually
+
+If everything works, put this in your `~/.bashrc`
 
 ```
 export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
