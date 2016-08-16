@@ -239,23 +239,27 @@ https://github.com/ContinuumIO/anaconda-issues/issues/686
 
 #### Installation of `fftw`
 
-Follow the instructions in the `user_manual`, and configure with
+In the terminal, run
 
 ```
+cd ~
+mkdir local
+cd local
+mkdir examples
+cd ..
+mkdir install
+cd install
+wget http://www.fftw.org/fftw-3.3.5.tar.gz
+tar -xzvf fftw-3.3.5.tar.gz 
+cd fftw-3.3.5
 ./configure --prefix=$HOME/local
+make
+make install
 ```
 
 #### Installation of `netcdf-4.1.3`
 
-Before the installation
-
-*NOTE*: The following command may be deprecated, and may yield `The following specifications were found to be in conflict`
-
-```
-conda install hdf5=1.8.9
-```
-
-followed by
+In the terminal, run
 
 ```
 cd ~
@@ -268,20 +272,60 @@ cd install
 wget http://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-4.1.3.tar.gz
 tar -xzvf netcdf-4.1.3.tar.gz 
 cd netcdf-4.1.3
-./configure --prefix=$HOME/local CPPFLAGS="-I/$HOME/anaconda3/include" LDFLAGS="-I/$HOME/anaconda3/lib"
-export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
 ```
 
-*NOTE*: This may return `configure: error: Can't find or link to the hdf5 library. Use --disable-netcdf-4, or see config.log for errors.`, which means that `hdf5` may have to be built manually
+*NOTE*: There are several possibilities to fail the install, the solution may be the last of the following possibilites
 
-If everything works, put this in your `~/.bashrc`
+* Try
+
+    ```
+    ./configure --prefix=$HOME/local
+    ```
+
+    If this works, , skip the rest of the bullets.
+
+    * If you get `configure: error: Can't find or link to the hdf5 library. Use --disable-netcdf-4, or see config.log for    errors.`, try
+
+        ```
+        conda install hdf5=1.8.9
+        ```
+
+        If this doesn't work, see next point, if not continue with
+
+        ```
+        ./configure --prefix=$HOME/local CPPFLAGS="-I$HOME/anaconda3/include" LDFLAGS="-I$HOME/anaconda3/lib"
+        export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
+        ```
+        
+        If this works, put the following in your `~/.bashrc`
+
+        ```
+        export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
+        source ~/.bashrc
+        ```
+        
+        If this works, skip the rest of the bullets.
+
+        * If you get `The following specifications were found to be in conflict` after typing `conda install hdf5=1.8.9`, try
+
+            ```
+            ./configure --prefix=$HOME/local --disable-netcdf-4
+            ```
+            
+            If this works, skip the rest of the bullets.
+            
+            * If the previous fails, there is still a possiblity to configure with
+            
+                ```
+                ./configure --prefix=$HOME/local  --disable-fortran --disable-netcdf-4
+                ```
+        
+Irrespective of how you configured, complete with
 
 ```
-export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
-source ~/.bashrc
+make
+make install
 ```
-
-follow the instructions given in the `user_manual`
 
 #### Configure BOUT-dev
 
