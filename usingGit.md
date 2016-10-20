@@ -19,6 +19,7 @@ When everything fails, and you forget how to git
 - [Move between repositories](#move-between-repositories)
 - [Using patches](#using-patches)
 - [Delete large files](#delete-large-files)
+- [Manual merge](#manual-merge)
 
 ## Warm-up tutorials
 http://readwrite.com/2013/09/30/understanding-github-a-journey-for-beginners-part-1#awesm=~oFlQCvoJank0tf
@@ -260,3 +261,14 @@ git push origin --force --all
 ```
 
 http://dalibornasevic.com/posts/2-permanently-remove-files-and-folders-from-git-repo
+
+## Manual merge
+This can be handy when one wants to merge just some changes, but not all
+
+```
+git merge --no-commit merge_branch --no-ff
+```
+
+The modified files now have to be added manually in order to finish the merge
+
+http://stackoverflow.com/questions/4657009/how-to-merge-all-files-manually-in-git
