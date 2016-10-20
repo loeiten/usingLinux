@@ -37,7 +37,8 @@ to the `.bashrc` file in order to get autocompletion
 conda install argcomplete future mpich2 netcdf4
 conda update --all
 ```
-On clusters, you may want to `conda install imagemagick` through binstar
+On clusters, you may want to `conda install imagemagick` and `conda install
+ffmpeg` through binstar/Anaconda Cloud.
 
 **NOTE**
 * Sometimes `scipy` etc. is installed with `mkl`, this can cause trouble. To fix
