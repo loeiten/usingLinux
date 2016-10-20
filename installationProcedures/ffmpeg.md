@@ -8,7 +8,7 @@ This guide shows how on could build ffmpeg locally.
 
 ## Building ffmpeg
 
-```
+```sh
 cd $HOME
 mkdir local
 mkdir install
@@ -22,7 +22,7 @@ cd ffmpeg-3.1.4
 If an error occurs that `yasm` is too old or non-existing, see
 [build yasm](#build-yasm), if not proceed with
 
-```
+```sh
 make
 # Optional
 # make check
@@ -30,7 +30,7 @@ make install
 ```
 ## Build yasm
 
-```
+```sh
 cd $HOME
 mkdir local
 mkdir install
