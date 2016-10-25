@@ -88,8 +88,10 @@ for example
 
 http://stackoverflow.com/questions/23074484/cannot-save-matplotlib-animation-with-ffmpeg
 
-Writer example (the `codec` in the example used assumes `x264` is installed, if
-`codec` is unspecified `mpeg4` is usually the default):
+Writer example:
+
+The `codec` in the example used assumes `x264` is installed.
+If `codec` is unspecified `mpeg4` is usually the default.
 
 ```py
 #!/usr/bin/env python
@@ -119,12 +121,13 @@ def animate(i):
 ani = animation.FuncAnimation(fig, animate, frames=60, interval=1000)
 
 FFMpegWriter = animation.writers['ffmpeg']
-# * bitrate is set high in order to have ok quality
+# * bitrate is set to -1 for automatic bit rate, if not a high number
+#   should be set to get good quality
 # * fps is sets how fast
 #   http://stackoverflow.com/questions/22010586/matplotlib-animation-duration
 # * codec is by default mpeg4, but as this creates large files.
 #   h264 is preferred.
-writer = FFMpegWriter(bitrate = 10000, fps=10, codec="h264")
+writer = FFMpegWriter(bitrate = -1, fps=10, codec="h264")
 
 ani.save('clock.mp4', writer, dpi=200)
 plt.show()
