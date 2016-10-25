@@ -2,10 +2,10 @@
 
 This guide shows how on could build ffmpeg locally.
 
-- [Building ffmpeg](building-ffmpeg)
-- [Building yasm](building-yasm)
-- [Building x264](building-x264)
-- [Use in matplotlib](Use in matplotlib)
+- [Building ffmpeg](#building-ffmpeg)
+- [Building yasm](#building-yasm)
+- [Building x264](#building-x264)
+- [Use in matplotlib](#use-in-matplotlib)
 
 ## Building ffmpeg
 
@@ -26,7 +26,7 @@ If you do not care about having smaller files, continue with
 ```
 
 If you would like a good compression, first make sure that
-[x256 is built](building-x264), and proceed with
+[x256 is built](#building-x264), and proceed with
 
 ```sh
 ./configure --prefix=$HOME/local --enable-gpl --enable-libx264 \
@@ -44,7 +44,7 @@ make
 # make check
 make install
 ```
-## Build yasm
+## Building yasm
 
 ```sh
 cd $HOME
@@ -62,7 +62,7 @@ make install
 ```
 
 ## Building x264
-Make sure that [yasm](building-yasm), and proceed with
+Make sure that [yasm](#building-yasm), and proceed with
 
 ```sh
 cd $HOME
