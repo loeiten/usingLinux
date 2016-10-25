@@ -123,7 +123,7 @@ ani = animation.FuncAnimation(fig, animate, frames=60, interval=1000)
 FFMpegWriter = animation.writers['ffmpeg']
 # * bitrate is set to -1 for automatic bit rate, if not a high number
 #   should be set to get good quality
-# * fps is sets how fast
+# * fps is sets how fast the animation is played
 #   http://stackoverflow.com/questions/22010586/matplotlib-animation-duration
 # * codec is by default mpeg4, but as this creates large files.
 #   h264 is preferred.
