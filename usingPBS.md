@@ -25,13 +25,14 @@ http://docs.adaptivecomputing.com/ -> Archived Documentation
 `qsub -W depend=afterok:pid myOtherPBSScript`  | Submits a job to the cluster after `pid` is done
 `qstat`                                        | Prints jobs currently running on the cluster
 `qstat -u username`                            | Prints the jobs submitted by `username`
+`qstat -f pid`                                 | Displays full info of job with process id `pid`
+`qstat -f pid | grep -i Job_name`              | Displays full job name for `pid` using `grep`
 `qhold pid`                                    | Prevent job `pid` to run until released
 `qrls pid`                                     | Releases job `pid` from a hold
 `qdel pid`                                     | Delete the job with process id `pid`
 ``qdel `seq -f "%.0f" 512173 512175` ``        | Delete the jobs `512173`, `512174` and `512175`
 `qdel all`                                     | Delete all jobs (your jobs if you are not admin)
 `qstat -q`                                     | Shows available queues and their walltime-limit
-`qstat -f pid`                                 | Displays full info of job with process id `pid`
 `showq`                                        | Show the queue (works at least with `Maui` scheduler)
 
 ## Example script
