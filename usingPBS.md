@@ -31,6 +31,7 @@ http://docs.adaptivecomputing.com/ -> Archived Documentation
 ``qdel `seq -f "%.0f" 512173 512175` ``        | Delete the jobs `512173`, `512174` and `512175`
 `qdel all`                                     | Delete all jobs (your jobs if you are not admin)
 `qstat -q`                                     | Shows available queues and their walltime-limit
+`qstat -f pid`                                 | Displays full info of job with process id `pid`
 `showq`                                        | Show the queue (works at least with `Maui` scheduler)
 
 ## Example script
@@ -83,3 +84,7 @@ http://en.wikipedia.org/wiki/Maui_Cluster_Scheduler
 Documentation:
 
 http://docs.adaptivecomputing.com/maui/pdf/mauiadmin.pdf
+
+## Links
+
+https://www.osc.edu/supercomputing/batch-processing-at-osc/monitoring-and-managing-your-job
