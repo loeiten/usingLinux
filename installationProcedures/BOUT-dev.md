@@ -55,7 +55,7 @@ conda install mpich2
 Alternative, download mpich-3.1.4 and
 
 ```
-./configure --prefix=$HOME/local CC=gcc CXX=g++ FC=gfortran
+./configure --prefix=$HOME/local CC=gcc CXX=g++ FC=gfortran && make && make install
 ```
 
 
