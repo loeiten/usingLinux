@@ -93,7 +93,7 @@ Writer example:
 The `codec` in the example used assumes `x264` is installed.
 If `codec` is unspecified `mpeg4` is usually the default.
 
-```py
+```python
 #!/usr/bin/env python
 
 """
