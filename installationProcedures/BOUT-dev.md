@@ -69,17 +69,17 @@ At the time of writing, sundials can be obtained by
 
 ```
 cd ~
-mkdir local
+mkdir -p local
 cd local
-mkdir examples
+mkdir -p examples
 cd ..
-mkdir install
+mkdir -p install
 cd install
 wget http://computation.llnl.gov/projects/sundials-suite-nonlinear-differential-algebraic-equation-solvers/download/sundials-2.6.2.tar.gz
 tar -xzvf sundials-2.6.2.tar.gz
 rm sundials-2.6.2.tar.gz
 cd sundials-2.6.2
-mkdir build
+mkdir -p build
 cd build
 cmake \
 -DCMAKE_INSTALL_PREFIX=$HOME/local \
@@ -243,14 +243,14 @@ In the terminal, run
 
 ```
 cd ~
-mkdir local
+mkdir -p local
 cd local
-mkdir examples
+mkdir -p examples
 cd ..
-mkdir install
+mkdir -p install
 cd install
 wget http://www.fftw.org/fftw-3.3.5.tar.gz
-tar -xzvf fftw-3.3.5.tar.gz 
+tar -xzvf fftw-3.3.5.tar.gz
 cd fftw-3.3.5
 ./configure --prefix=$HOME/local
 make
@@ -263,14 +263,14 @@ In the terminal, run
 
 ```
 cd ~
-mkdir local
+mkdir -p local
 cd local
-mkdir examples
+mkdir -p examples
 cd ..
-mkdir install
+mkdir -p install
 cd install
 wget http://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-4.1.3.tar.gz
-tar -xzvf netcdf-4.1.3.tar.gz 
+tar -xzvf netcdf-4.1.3.tar.gz
 cd netcdf-4.1.3
 ```
 
@@ -296,14 +296,14 @@ cd netcdf-4.1.3
         ./configure --prefix=$HOME/local CPPFLAGS="-I$HOME/anaconda3/include" LDFLAGS="-I$HOME/anaconda3/lib"
         export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
         ```
-        
+
         If this works, put the following in your `~/.bashrc`
 
         ```
         export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
         source ~/.bashrc
         ```
-        
+
         If this works, skip the rest of the bullets.
 
         * If you get `The following specifications were found to be in conflict` after typing `conda install hdf5=1.8.9`, try
@@ -311,15 +311,15 @@ cd netcdf-4.1.3
             ```
             ./configure --prefix=$HOME/local --disable-netcdf-4
             ```
-            
+
             If this works, skip the rest of the bullets.
-            
+
             * If the previous fails, there is still a possiblity to configure with
-            
+
                 ```
                 ./configure --prefix=$HOME/local  --disable-fortran --disable-netcdf-4
                 ```
-        
+
 Irrespective of how you configured, complete with
 
 ```

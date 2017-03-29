@@ -11,8 +11,4 @@
   `.mp4`
 * [pngToGif.sh](pngToGif.sh) - Makes png to gif by adding a transparent
   background and auto-cropping
-* [tmuxLocalInstall.sh](tmuxLocalInstall.sh) - Local installation of
-  [tmux](https://tmux.github.io/). This based on
-  https://gist.github.com/brandondrew/3915551, which is a fork of
-  https://gist.github.com/ryin/3106801. See also
-  [windowManagement.md](../windowManagement.md).
+* [windowManagement.md](../windowManagement.md).
