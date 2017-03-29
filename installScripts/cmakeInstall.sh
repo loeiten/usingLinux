@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Installs the master branch of BOUT-dev
-CMAKE_MAJOR=3
-CMAKE_MINOR=7
-CMAKE_PATCH=2
+# Installs cmake
+CMAKE_MAJOR="3"
+CMAKE_MINOR="7"
+CMAKE_PATCH="2"
 
 # exit on error
 set -e

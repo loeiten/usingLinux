@@ -1,18 +1,28 @@
 #!/bin/bash
 
 # Installs the master branch of BOUT-dev
-SUNDIALS_VERSION="2.7.0"
 INCL_PETSC_SLEPC=false
-PETSC_VERSION="3.4.5"
-SLEPC_VERSION="3.4.4"
+INCL_SUNDIALS=true
+OPTIMIZING=true
+DEBUG=false
 
 # exit on error
 set -e
 
+CURDIR=$PWD
+EXTRA_PACKAGES=""
+EXTRA_FLAGS=""
+
+if [ OPTIMIZING=true ]; then
+    EXTRA_FLAGS="${EXTRA_FLAGS} --enable-checks=no --enable-optimize=3"
+elif [ DEBUG=true ]; then
+    EXTRA_FLAGS="${EXTRA_FLAGS} --enable-debug --enable-checks=3 --enable-track"
+fi
+
 # Requires anaconda
 cd $HOME
 ANACONDA=`find anaconda* -print -quit`
-if [ -d $ANACONDA ]; then
+if [ ! -d $ANACONDA ]; then
     echo -e "\nThe installation script requires anaconda installed in ${HOME}"
     exit 1
 fi
@@ -21,66 +31,53 @@ fi
 echo -e "\n\n\nInstalling mpich2 through anaconda\n\n\n"
 echo "Y" | conda install mpich2
 
-# Install sudials
-echo -e "\n\n\nInstalling sundials\n\n\n"
-cd $HOME
-mkdir -p local
-cd local
-mkdir examples
-cd ..
-mkdir install
-cd install
-wget http://computation.llnl.gov/projects/sundials-suite-nonlinear-differential-algebraic-equation-solvers/download/sundials-${SUNDIALS_VERSION}.tar.gz
-tar -xzvf sundials-${SUNDIALS_VERSION}.tar.gz
-rm sundials-${SUNDIALS_VERSION}.tar.gz
-cd sundials-${SUNDIALS_VERSION}
-mkdir build
-cd build
-cmake \
--DCMAKE_INSTALL_PREFIX=$HOME/local \
--DEXAMPLES_INSTALL_PATH=$HOME/local/examples \
--DOPENMP_ENABLE=ON \
--DMPI_ENABLE=ON \
--DCMAKE_LINKER=$HOME/local/lib \
--DBUILD_SHARED_LIBS=OFF \
-../
+export PATH="$HOME/local/bin:$PATH"
+export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
 
-make
-make install
+# # Install fftw
+bash $CURDIR/fftwInstall.sh
 
-if [ INCL_PETSC_SLEPC = true ]; then
-    echo -e "\n\n\nInstalling PETSc\n\n\n"
-    cd $HOME
-    wget http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-${PETSC_VERSION}.tar.gz
-    tar -xzvf petsc-${PETSC_VERSION}.tar.gz
-    rm petsc-${PETSC_VERSION}.tar.gz
-    cd petsc-${PETSC_VERSION}
-    python2 ./configure \
-    --with-clanguage=cxx \
-    --with-mpi=1 \
-    --with-precision=double \
-    --with-scalar-type=real \
-    --with-shared-libraries=0 \
-    --download-fblaslapack=1 \
-    --download-f2cblaslapack=1
+# Install hdf5
+bash $CURDIR/hdf5Install.sh
 
-    export PETSC_DIR=$HOME/petsc-${PETSC_VERSION}
+# Install netcdf
+bash $CURDIR/netcdfInstall.sh
 
-    echo -e "\n\n\nInstalling SLEPc\n\n\n"
-
-    export PETSC_ARCH=arch-linux2-cxx-debug
-    export SLEPC_DIR=$HOME/slepc-${SLEPC_VERSION}
-
-    cd $HOME
-    wget http://slepc.upv.es/download/download.php?filename=slepc-${SLEPC_VERSION}.tar.gz -O slepc-${SLEPC_VERSION}.tar.gz
-    tar xzf slepc-${SLEPC_VERSION}.tar.gz
-    rm slepc-${SLEPC_VERSION}.tar.gz
-    cd slepc-${SLEPC_VERSION}
-    python2 ./configure
+if [ INCL_SUNDIALS=true ]; then
+    # Install sudials
+    bash $CURDIR/sundialsInstall.sh
+    EXTRA_PACKAGES="${EXTRA_PACKAGES} --with-sundials"
 fi
 
+if [ INCL_PETSC_SLEPC=true ]; then
+    # Install PETSc
+    bash $CURDIR/PETScInstall.sh
+
+    # Install SLEPc
+    bash $CURDIR/SLEPcInstall.sh
+    EXTRA_PACKAGES="${EXTRA_PACKAGES} --with-petsc --with-slepc"
+fi
+
+echo -e "\n\n\nInstalling BOUT-dev\n\n\n"
+cd $HOME
+# git clone https://github.com/boutproject/BOUT-dev.git
+cd BOUT-dev
+/configure ${EXTRA_FLAGS} ${EXTRA_PACKAGES}
+make
+echo -e "\n\n\nDone installing BOUT-dev\n\n\n"
+echo -e "\n\n\nChecking installation\n\n\n"
+cd examples/conduction
+make
+./conduction
+
 echo -e "\n\n\nInstallation complete.\n"
-echo -e "Add the following line to your .bashrc:"
-echo -e "export PETSC_DIR=$HOME/petsc-${PETSC_VERSION}"
-echo -e "export PETSC_ARCH=arch-linux2-cxx-debug"
-echo -e "export SLEPC_DIR=$HOME/slepc-${SLEPC_VERSION}"
+echo -e "Make sure the following lines are present in your .bashrc:"
+echo -e "export PYTHONPATH=\$HOME/BOUT-dev/tools/pylib/:\$PYTHONPATH"
+echo -e "export PATH=\$HOME/local/bin:\$PATH"
+echo -e "export LD_LIBRARY_PATH=\$HOME/local/lib:\$LD_LIBRARY_PATH"
+
+if [ INCL_PETSC_SLEPC=true ]; then
+    echo -e "export PETSC_DIR=\$HOME/petsc-\${PETSC_VERSION}"
+    echo -e "export PETSC_ARCH=arch-linux2-cxx-debug"
+    echo -e "export SLEPC_DIR=\$HOME/slepc-\${SLEPC_VERSION}"
+fi
