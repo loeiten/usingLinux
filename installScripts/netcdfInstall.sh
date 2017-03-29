@@ -32,7 +32,7 @@ make check
 make install
 echo -e "\n\n\nDone installing netcdf\n\n\n"
 
-# Install c++ api
+# Install c++ API
 echo -e "\n\n\nInstalling the c++ interface\n\n\n"
 cd $HOME/install
 wget -O netcdf-cxx4-${NETCDF_CXX_VERSION}.tar.gz http://github.com/Unidata/netcdf-cxx4/archive/v${NETCDF_CXX_VERSION}.tar.gz
