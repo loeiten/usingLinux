@@ -1,13 +1,13 @@
 #!/bin/bash
 
+# Installs GCC locally
 # This based on http://luiarthur.github.io/gccinstall
-
 # NOTE: The installation usually takes long time
+
+VERSION="6.1.0"
 
 # exit on error
 set -e
-
-VERSION="6.1.0"
 
 mkdir -p $HOME/install
 cd $HOME/install
