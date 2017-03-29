@@ -60,9 +60,9 @@ fi
 
 echo -e "\n\n\nInstalling BOUT-dev\n\n\n"
 cd $HOME
-# git clone https://github.com/boutproject/BOUT-dev.git
+git clone https://github.com/boutproject/BOUT-dev.git
 cd BOUT-dev
-/configure ${EXTRA_FLAGS} ${EXTRA_PACKAGES}
+./configure ${EXTRA_FLAGS} ${EXTRA_PACKAGES}
 make
 echo -e "\n\n\nDone installing BOUT-dev\n\n\n"
 echo -e "\n\n\nChecking installation\n\n\n"

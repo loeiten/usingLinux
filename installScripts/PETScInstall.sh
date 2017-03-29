@@ -21,6 +21,8 @@ python2 ./configure \
 --with-shared-libraries=0 \
 --download-fblaslapack=1 \
 --download-f2cblaslapack=1
+make PETSC_DIR=$HOME/petsc-${PETSC_VERSION} PETSC_ARCH=arch-linux2-cxx-debug all
+make PETSC_DIR=$HOME/petsc-${PETSC_VERSION} PETSC_ARCH=arch-linux2-cxx-debug test
 
 export PETSC_DIR=$HOME/petsc-${PETSC_VERSION}
 export PETSC_ARCH=arch-linux2-cxx-debug
