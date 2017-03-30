@@ -50,6 +50,7 @@ cd ncurses-${NCURSES_VERSION}
 ./configure --prefix=$HOME/local
 make
 make install
+cd ..
 
 ############
 # tmux     #
