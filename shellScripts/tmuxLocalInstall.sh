@@ -38,6 +38,8 @@ cd ..
 ############
 # ncurses  #
 ############
+# http://stackoverflow.com/questions/37475222/ncurses-6-0-compilation-error-error-expected-before-int
+export CPPFLAGS="-P"
 tar xvzf ncurses-${NCURSES_VERSION}.tar.gz
 cd ncurses-${NCURSES_VERSION}
 ./configure --prefix=$HOME/local
