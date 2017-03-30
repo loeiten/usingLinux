@@ -1,5 +1,6 @@
 # Installation of BOUT-dev
 
+**NOTE**: An installation script can be found [here](../installScripts/boutPPInstall.sh).
 ...through own experience
 
 - [Install MPI](#install-mpi)
@@ -13,7 +14,7 @@
 
 **NOTE**:
 
-1. This note is written for BOUT-dev 3.0.
+1. This note is written for BOUT-dev 4.0.
 2. It is highly recommended to clone from the [BOUT-dev](https://github.com/boutproject/BOUT-dev) repository.
 
 ## Install MPI
@@ -69,17 +70,17 @@ At the time of writing, sundials can be obtained by
 
 ```
 cd ~
-mkdir local
+mkdir -p local
 cd local
-mkdir examples
+mkdir -p examples
 cd ..
-mkdir install
+mkdir -p install
 cd install
 wget http://computation.llnl.gov/projects/sundials-suite-nonlinear-differential-algebraic-equation-solvers/download/sundials-2.6.2.tar.gz
 tar -xzvf sundials-2.6.2.tar.gz
 rm sundials-2.6.2.tar.gz
 cd sundials-2.6.2
-mkdir build
+mkdir -p build
 cd build
 cmake \
 -DCMAKE_INSTALL_PREFIX=$HOME/local \
@@ -211,7 +212,7 @@ WARNING: netcdf4-python module not found
 cd into the BOUT-dev folder
 
 ```
-./configure --with-checks=3 --with-track --with-debug --with-petsc --with-slepc --with-sundials
+./configure --enable-checks=3 --enable-track --enable-debug --with-petsc --with-slepc --with-sundials
 make
 cd examples/bout_runners_example
 python 6a-run_with_MMS_post_processing_specify_numbers.py
@@ -243,89 +244,77 @@ In the terminal, run
 
 ```
 cd ~
-mkdir local
+mkdir -p local
 cd local
-mkdir examples
+mkdir -p examples
 cd ..
-mkdir install
+mkdir -p install
 cd install
 wget http://www.fftw.org/fftw-3.3.5.tar.gz
-tar -xzvf fftw-3.3.5.tar.gz 
+tar -xzvf fftw-3.3.5.tar.gz
 cd fftw-3.3.5
 ./configure --prefix=$HOME/local
 make
 make install
 ```
 
-#### Installation of `netcdf-4.1.3`
+#### Installation of `hdf5`
+In the terminal, run
 
+```
+mkdir -p local
+cd local
+mkdir -p examples
+cd ..
+mkdir -p install
+cd install
+wget ftp://ftp.hdfgroup.org/HDF5/current/src/hdf5-1.10.0-patch1.tar.gz
+tar -xzvf hdf5-1.10.0-patch1.tar.gz
+cd hdf5-1.10.0-patch1
+./configure --prefix=$HOME/local
+make
+make install
+```
+
+#### Installation of `netcdf`
+
+netcdf requires [hdf5](#installation-of-hdf5-4.4.1.1)
 In the terminal, run
 
 ```
 cd ~
-mkdir local
+mkdir -p local
 cd local
-mkdir examples
+mkdir -p examples
 cd ..
-mkdir install
+mkdir -p install
 cd install
-wget http://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-4.1.3.tar.gz
-tar -xzvf netcdf-4.1.3.tar.gz 
-cd netcdf-4.1.3
-```
-
-*NOTE*: There are several possibilities to fail the install, the solution may be the last of the following possibilites
-
-* Try
-
-    ```
-    ./configure --prefix=$HOME/local
-    ```
-
-    If this works, , skip the rest of the bullets.
-
-    * If you get `configure: error: Can't find or link to the hdf5 library. Use --disable-netcdf-4, or see config.log for    errors.`, try
-
-        ```
-        conda install hdf5=1.8.9
-        ```
-
-        If this doesn't work, see next point, if not continue with
-
-        ```
-        ./configure --prefix=$HOME/local CPPFLAGS="-I$HOME/anaconda3/include" LDFLAGS="-I$HOME/anaconda3/lib"
-        export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
-        ```
-        
-        If this works, put the following in your `~/.bashrc`
-
-        ```
-        export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
-        source ~/.bashrc
-        ```
-        
-        If this works, skip the rest of the bullets.
-
-        * If you get `The following specifications were found to be in conflict` after typing `conda install hdf5=1.8.9`, try
-
-            ```
-            ./configure --prefix=$HOME/local --disable-netcdf-4
-            ```
-            
-            If this works, skip the rest of the bullets.
-            
-            * If the previous fails, there is still a possiblity to configure with
-            
-                ```
-                ./configure --prefix=$HOME/local  --disable-fortran --disable-netcdf-4
-                ```
-        
-Irrespective of how you configured, complete with
-
-```
+wget http://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-4.4.1.1.tar.gz
+tar -xzvf netcdf-4.4.1.1.tar.gz
+cd netcdf-4.4.1.1
+CPPFLAGS=-I$HOME/local/include LDFLAGS=-L$HOME/local/lib ./configure --prefix=$HOME/local --disable-dap
 make
+make check
+make install
+
+cd $HOME/install
+wget -O netcdf-cxx4-4.3.0.tar.gz http://github.com/Unidata/netcdf-cxx4/archive/v4.3.0.tar.gz
+tar -xzvf netcdf-cxx4-4.3.0.tar.gz
+cd netcdf-cxx4-4.3.0
+CPPFLAGS=-I$HOME/local/include LDFLAGS=-L${NETCDFDIR}/lib ./configure --prefix=$HOME/local
+make
+make check
 make install
 ```
+
+Add
+
+```
+export PATH="$HOME/local/bin:$PATH"
+export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
+```
+
+to your `~/.bashrc`
 
 #### Configure BOUT-dev
 
@@ -338,7 +327,7 @@ If you want `sundials` and `PETSc`, see
 cd into the BOUT-dev folder
 
 ```
-./configure --with-checks=no --with-fftw --with-netcdf --with-petsc --with-slepc --with-sundials --with-optimize=3
+./configure --enable-checks=no --with-fftw --with-netcdf --with-petsc --with-slepc --with-sundials --enable-optimize=3
 make clean && make
 cd examples/bout_runners_example
 python 9-PBS_with_MMS_post_processing_grid_file.py
