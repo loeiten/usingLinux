@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Installs GCC locally
 # This based on http://luiarthur.github.io/gccinstall
@@ -26,10 +26,11 @@ mkdir -p objdir
 cd objdir
 
 echo -e "\n\n\n\n\n Configuring gcc\n"
-$PWD/../gcc-{$VERSION}/configure --prefix=$HOME/gcc-${VERSION}
+$PWD/../gcc-$VERSION/configure --prefix=$HOME/gcc-$VERSION
 
 
 echo -e "\n\n\n\n\n Making\n"
+make clean
 make
 
 echo -e "\n\n\n\n\n Make install\n"

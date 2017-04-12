@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Installs fftw
 FFTW_VERSION="3.3.6-pl2"
@@ -18,6 +18,8 @@ cd install
 wget http://www.fftw.org/fftw-${FFTW_VERSION}.tar.gz
 tar -xzvf fftw-${FFTW_VERSION}.tar.gz
 cd fftw-${FFTW_VERSION}
+# : is the no-op command
+make clean || :
 ./configure --prefix=$HOME/local
 make
 make install

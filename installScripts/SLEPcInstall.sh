@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # NOTE: Depends on PETSc
 
@@ -18,6 +18,8 @@ tar xzf slepc-${SLEPC_VERSION}.tar.gz
 rm slepc-${SLEPC_VERSION}.tar.gz
 cd slepc-${SLEPC_VERSION}
 python2 ./configure
+# : is the no-op command
+make clean || :
 make SLEPC_DIR=$HOME/slepc-${SLEPC_VERSION} PETSC_DIR=$HOME/petsc-${PETSC_VERSION} PETSC_ARCH=arch-linux2-cxx-debug
 make test
 echo -e "\n\n\nDone installing SLEPc\n\n\n"

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # This based on https://gist.github.com/brandondrew/3915551, which is a fork of
 # https://gist.github.com/ryin/3106801

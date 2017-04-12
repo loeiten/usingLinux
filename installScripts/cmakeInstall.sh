@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Installs cmake
 CMAKE_MAJOR="3"
@@ -22,6 +22,8 @@ cd cmake-${CMAKE_VERSION}
 echo -e "\nConfiguring\n"
 ./bootstrap --prefix=$HOME/local
 echo -e "\nMaking\n"
+# : is the no-op command
+make clean || :
 make
 make install
 echo -e "\n\n\nSuccess!"

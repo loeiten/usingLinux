@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Installs hdf5
 HDF5_VERSION="1.10.0-patch1"
@@ -18,7 +18,9 @@ cd install
 wget ftp://ftp.hdfgroup.org/HDF5/current/src/hdf5-${HDF5_VERSION}.tar.gz
 tar -xzvf hdf5-${HDF5_VERSION}.tar.gz
 cd hdf5-${HDF5_VERSION}
-./configure --prefix=$HOME/local
+# : is the no-op command
+make clean || :
+./configure --prefix=$HOME/local --enable-cxx=yes
 make
 make install
 echo -e "\n\n\nDone installing hdf5\n\n\n"

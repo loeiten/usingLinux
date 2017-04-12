@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Installs sundials
 # SUNDIALS_VERSION="2.7.0" # Gives openmp problems
@@ -10,6 +10,14 @@ set -e
 # Install sudials
 echo -e "\n\n\nInstalling sundials\n\n\n"
 cd $HOME
+
+# Set the proper GCC
+GCC=`find gcc* -print -quit` || GCC=""
+if [ ! -z $GCC ]; then
+    export CC=`which gcc`
+    export CXX=`which g++`
+fi
+
 mkdir -p local
 cd local
 mkdir -p examples
@@ -20,6 +28,8 @@ wget http://computation.llnl.gov/projects/sundials-suite-nonlinear-differential-
 tar -xzvf sundials-${SUNDIALS_VERSION}.tar.gz
 rm sundials-${SUNDIALS_VERSION}.tar.gz
 cd sundials-${SUNDIALS_VERSION}
+# Make clean equivalent
+rm -rf build
 mkdir -p build
 cd build
 cmake \

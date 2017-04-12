@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Installs netcdf
 NETCDF_VERSION="4.4.1.1"
@@ -25,8 +25,14 @@ cd netcdf-${NETCDF_VERSION}
 # netCDF-4 doesn't use --with-PACKAGE=PATH
 # https://www.unidata.ucar.edu/support/help/MailArchives/netcdf/msg13261.html
 # http://www.unidata.ucar.edu/software/netcdf/docs/getting_and_building_netcdf.html#build_default
+# : is the no-op command
+make clean || :
 # --disable-dap can be removed if libcurl is accessible
-CPPFLAGS=-I${H5DIR}/include LDFLAGS=-L${H5DIR}/lib ./configure --prefix=$HOME/local --disable-dap
+# NOTE:
+# !!!
+# CPPFLAGS and LDFLAGS must appear at same line as configure as we do not export
+# !!!
+CPPFLAGS="-I${H5DIR}/include" LDFLAGS="-L${H5DIR}/lib" ./configure --prefix=$HOME/local --disable-dap
 make
 make check
 make install
@@ -38,6 +44,12 @@ cd $HOME/install
 wget -O netcdf-cxx4-${NETCDF_CXX_VERSION}.tar.gz http://github.com/Unidata/netcdf-cxx4/archive/v${NETCDF_CXX_VERSION}.tar.gz
 tar -xzvf netcdf-cxx4-${NETCDF_CXX_VERSION}.tar.gz
 cd netcdf-cxx4-${NETCDF_CXX_VERSION}
+# : is the no-op command
+make clean || :
+# NOTE:
+# !!!
+# CPPFLAGS and LDFLAGS must appear at same line as configure as we do not export
+# !!!
 CPPFLAGS=-I${NETCDFDIR}/include LDFLAGS=-L${NETCDFDIR}/lib ./configure --prefix=$HOME/local
 make
 make check
