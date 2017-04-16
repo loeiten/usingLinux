@@ -1,18 +1,32 @@
 #!/usr/bin/env bash
 
 # Installs the master branch of BOUT-dev
-# CMAKE above 2.8.11
-INSTALL_CONDA="true"
-INSTALL_CMAKE="true"
-INCL_PETSC_SLEPC="false"
-INCL_SUNDIALS="true"
-OPTIMIZING="true"
-DEBUG="false"
 
+
+# Options
+# ==============================================================================
+INSTALL_CONDA="true"        # Needed for post-processing
+INSTALL_CMAKE="false"       # Needed for sundials if CMAKE is below 2.8.11
+INSTALL_FFMPEG="false"      # Needed for post-processing if x264 is not present
+INCL_SUNDIALS="true"        # The preferred time solver
+INCL_PETSC_SLEPC="false"    # Only needed for fancy features
+OPTIMIZING="true"           # Good for speed
+DEBUG="false"               # Good for debugging, bad for speed
+# ==============================================================================
+
+
+# Preparations
+# ==============================================================================
 # exit on error
 set -e
 
 CURDIR=$PWD
+
+# Ensure paths are available when building
+export PATH="$HOME/local/bin:$PATH"
+export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
+
+# Extra packages and flags for BOUT-dev
 EXTRA_PACKAGES=""
 EXTRA_FLAGS=""
 
@@ -22,21 +36,22 @@ if [ "$OPTIMIZING" = "true" ]; then
 elif [ "$DEBUG" = "true" ]; then
     EXTRA_FLAGS="${EXTRA_FLAGS} --enable-debug --enable-checks=3 --enable-track"
 fi
+# ==============================================================================
 
+
+# Install packages needed for BOUT-dev
+# ==============================================================================
 if [ "$INSTALL_CMAKE" = "true" ]; then
     bash $CURDIR/condaInstall.sh
+fi
+
+if [ "$INSTALL_FFMPEG" = "true" ]; then
+    bash $CURDIR/ffmpegInstall.sh
 fi
 
 # Install mpi
 bash $CURDIR/mpiInstall.sh
 
-export PATH="$HOME/local/bin:$PATH"
-export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
-
-if [ "$INSTALL_CMAKE" = "true" ]; then
-    # Install cmake
-    bash $CURDIR/cmakeInstall.sh
-fi
 # Install fftw
 bash $CURDIR/fftwInstall.sh
 
@@ -52,7 +67,6 @@ if [ "$INCL_SUNDIALS" = "true" ]; then
     EXTRA_PACKAGES="${EXTRA_PACKAGES} --with-sundials"
 fi
 
-
 if [ "$INCL_PETSC_SLEPC" = true ]; then
     # Install PETSc
     bash $CURDIR/PETScInstall.sh
@@ -61,7 +75,11 @@ if [ "$INCL_PETSC_SLEPC" = true ]; then
     bash $CURDIR/SLEPcInstall.sh
     EXTRA_PACKAGES="${EXTRA_PACKAGES} --with-petsc --with-slepc"
 fi
+# ==============================================================================
 
+
+# Builiding BOUT-dev master
+# ==============================================================================
 echo -e "\n\n\nInstalling BOUT-dev\n\n\n"
 cd $HOME
 git clone https://github.com/boutproject/BOUT-dev.git
@@ -74,7 +92,11 @@ echo -e "\n\n\nChecking installation\n\n\n"
 cd examples/bout_runners_example
 make
 python 6a-run_with_MMS_post_processing_specify_numbers.py
+# ==============================================================================
 
+
+# Write what needs to be exported
+# ==============================================================================
 echo -e "\n\n\nInstallation complete.\n"
 echo -e "Make sure the following lines are present in your .bashrc:"
 echo -e "export PYTHONPATH=\"\$HOME/BOUT-dev/tools/pylib/:\$PYTHONPATH\""
@@ -90,3 +112,4 @@ fi
 if [ "$INSTALL_CONDA" = true ]; then
     echo -e "export PATH=\"\$HOME/anaconda3/bin:\$PATH\""
 fi
+# ==============================================================================
