@@ -17,6 +17,6 @@ http://pyclewn.sourceforge.net/
 
 ## Alternatives
 The following have been tried, but without luck
-- `CONQUE GDB` - Never opens the gdb [even in python 27]
+- `CONQUE GDB` - Never opens the gdb [even in python 2.7]
 - `VIMGBD` - Just didn't worked
 - `GDBMGR` - Built and added gdbmgr.so to the library, but got message that no executable found
