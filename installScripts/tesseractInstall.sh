@@ -16,7 +16,8 @@ TESS_VER="3.05.00"
 TRAIN_VER="3.04.00"
 
 # Languages
-declare -a LANGS=("nor" "eng")
+# NOTE: OSD is orientation and script detection
+declare -a LANGS=("osd" "nor" "eng")
 
 cd $HOME
 mkdir -p local
