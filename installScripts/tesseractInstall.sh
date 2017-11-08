@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# NOTE: A standalone build script exists
+# https://github.com/tesseract-ocr/tesseract/wiki/Compiling#miscellaneous
+# https://pastebin.com/VnGLHfbr
+
 # See https://github.com/tesseract-ocr/tesseract/wiki/Compiling#install-elsewhere--without-root
 
 # NOTE:
@@ -8,6 +12,11 @@
 
 LEPT_VER="1.74.0"
 TESS_VER="3.05.00"
+# NOTE: There must be correspondence to the training url and the tesseract version
+TRAIN_VER="3.04.00"
+
+# Languages
+declare -a LANGS=("nor" "eng")
 
 cd $HOME
 mkdir -p local
@@ -28,7 +37,7 @@ echo -e "\nInstalling Leptonica\n"
 ./configure  --prefix=$HOME/local/
 make
 make install
-
+echo -e "\nDone\n"
 
 echo -e "\n\n\n\n\n"
 cd $HOME/install
@@ -42,5 +51,17 @@ echo -e "\nInstalling tesseract\n"
 LIBLEPT_HEADERSDIR=$HOME/local/include ./configure --prefix=$HOME/local/ --with-extra-libraries=$HOME/local/lib
 make
 make install
+echo -e "\nDone\n"
+
+echo -e "\nInstalling languages\n"
+cd $HOME/install
+for LANG in "${LANGS[@]}"
+do
+   echo -e "\nInstalling ${LANG}\n"
+   wget https://github.com/tesseract-ocr/tessdata/raw/${TRAIN_VER}/${LANG}.traineddata
+   mv ${LANG}.traineddata ${HOME}/local/share/tessdata/
+   echo -e "\nDone\n"
+done
+echo -e "\nDone\n"
 
 echo -e "\n\n\nSuccess!"
