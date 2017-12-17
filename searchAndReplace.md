@@ -120,7 +120,7 @@ http://stackoverflow.com/questions/4643438/how-to-search-contents-of-multiple-pd
 ## Replace strings in multiple files
 This can be very handy when used correctly
 ```
-grep -rl "matchstring" somedir/ | xargs sed -i 's/string1/string2/g'
+grep -rl --exclude-dir={".git"} "matchstring" somedir/ | xargs sed -i 's/string1/string2/g'
 ```
 
 ### Special characters
